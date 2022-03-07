@@ -1,0 +1,357 @@
+<div class="header">
+  <h1>{{!onlyForShow ? 'Регистрация пользователя' : 'Данные пользователя'}}</h1>
+</div>
+<div class="login">
+  <p>{{props ? props['reqFieldTooltip'] : ''}}</p>
+  <form [formGroup]="loginForm">
+    <mat-form-field>
+      <mat-label>{{props ? props['loginTooltip'] : ''}}</mat-label>
+      <input matInput formControlName="userName">
+      <mat-icon matSuffix>perm_identity</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{props ? props['passTooltip'] : ''}}</mat-label>
+      <input matInput formControlName="password" type="password">
+      <mat-icon matSuffix>lock</mat-icon>
+      <mat-error *ngIf=" password.hasError('required')">
+        {{props ? props['mustBeFilledTooltip'] : ''}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{props ? props['passTooltip'] : ''}}</mat-label>
+      <input matInput formControlName="password1" type="password">
+      <mat-icon matSuffix>lock</mat-icon>
+      <mat-error *ngIf="password1.hasError('required')">
+        {{props ? props['mustBeFilledTooltip'] : ''}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{props ? props['mailTooltip'] : ''}}</mat-label>
+      <input matInput formControlName="mainEmail" type="email">
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-hint>Errors appear instantly!</mat-hint>
+      <mat-error *ngIf="mainEmail.hasError('email') || mainEmail.hasError('required')">
+        {{props ? props['errorInputTooltip'] : ''}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{props ? props['reserveMailTooltip'] : ''}}</mat-label>
+      <input matInput formControlName="alterEmail" type="email">
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error *ngIf="alterEmail.hasError('email')">
+        {{props ? props['errorInputTooltip'] : ''}}
+      </mat-error>
+    </mat-form-field>
+    <form [formGroup]="phones">
+      <h2>{{props ? props['telTooltip'] : ''}}</h2>
+      <mat-form-field>
+        <mat-label>{{props ? props['mobTooltip'] : ''}}</mat-label>
+        <input matInput formControlName="mobTel">
+        <mat-icon matSuffix>call</mat-icon>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{props ? props['homeTooltip'] : ''}}</mat-label>
+        <input matInput formControlName="homeTel">
+        <mat-icon matSuffix>call</mat-icon>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{props ? props['workTooltip'] : ''}}</mat-label>
+        <input matInput formControlName="workTel">
+        <mat-icon matSuffix>call</mat-icon>
+      </mat-form-field>
+    </form>
+    <mat-form-field>
+      <mat-label>{{props ? props['faxTooltip'] : ''}}</mat-label>
+      <mat-icon matSuffix>local_print_shop</mat-icon>
+      <input matInput formControlName="fax">
+    </mat-form-field>
+  </form>
+  <div class="passportContainer">
+    <div class="passport">
+      <form [formGroup]="passportForm">
+        <h2 class="mat-title">{{props ? props['ruFormTooltip'] : ''}}</h2>
+        <mat-form-field>
+          <mat-label>{{props ? props['nameTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="name">
+          <mat-icon matSuffix>perm_identity</mat-icon>
+          <mat-error *ngIf="name.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['famTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="familia">
+          <mat-icon matSuffix>perm_identity</mat-icon>
+          <mat-error *ngIf="familia.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['otchTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="nasab">
+          <mat-icon matSuffix>perm_identity</mat-icon>
+          <mat-error *ngIf="nasab.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['calFormTooltip'] : ''}}</mat-label>
+          <mat-icon matSuffix>campaign</mat-icon>
+          <mat-select formControlName="appealForm">
+            <mat-option *ngFor="let d of appealForms;let idx=index" [value]="idx">{{d}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['acadDegreeTooltip'] : ''}}</mat-label>
+          <mat-icon matSuffix>school</mat-icon>
+          <mat-select formControlName="academicDegree">
+            <mat-option *ngFor="let d of degrees;let idx=index" [value]="idx">{{d}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="academicDegree.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['acadTitleTooltip'] : ''}}</mat-label>
+          <mat-icon matSuffix>school</mat-icon>
+          <mat-select formControlName="academicTitle">
+            <mat-option *ngFor="let d of acadTitles;let idx=index" [value]="idx">{{d}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="academicTitle.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['positionTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="position">
+          <mat-icon matSuffix>engineering</mat-icon>
+          <mat-error *ngIf="position.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['organisationTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="organisation">
+          <mat-icon matSuffix>door_sliding</mat-icon>
+          <mat-error *ngIf="organisation.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['departmentTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="department">
+          <mat-icon matSuffix>work_sharp</mat-icon>
+          <mat-error *ngIf="department.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <form [formGroup]="address">
+          <h2>{{props ? props['addressTooltip'] : ''}}</h2>
+          <mat-form-field>
+            <mat-label>{{props ? props['countryTooltip'] : ''}}</mat-label>
+            <input matInput formControlName="country">
+            <mat-icon matSuffix>perm_identity</mat-icon>
+            <mat-error *ngIf="country.hasError('required')">
+              {{props ? props['mustBeFilledTooltip'] : ''}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{props ? props['cityTooltip'] : ''}}</mat-label>
+            <input matInput formControlName="city">
+            <mat-icon matSuffix>location_city</mat-icon>
+            <mat-error *ngIf="city.hasError('required')">
+              {{props ? props['mustBeFilledTooltip'] : ''}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{props ? props['streetTooltip'] : ''}}</mat-label>
+            <input matInput formControlName="street">
+            <mat-icon matSuffix>streetview</mat-icon>
+            <mat-error *ngIf="street.hasError('required')">
+              {{props ? props['mustBeFilledTooltip'] : ''}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{props ? props['houseTooltip'] : ''}}</mat-label>
+            <input matInput formControlName="house">
+            <mat-icon matSuffix>house</mat-icon>
+            <mat-error *ngIf="house.hasError('required')">
+              {{props ? props['mustBeFilledTooltip'] : ''}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{props ? props['mailIndexTooltip'] : ''}}</mat-label>
+            <input matInput formControlName="mailIndex">
+            <mat-icon matSuffix>mail</mat-icon>
+            <mat-error *ngIf="mailIndex.hasError('required')">
+              {{props ? props['mustBeFilledTooltip'] : ''}}
+            </mat-error>
+          </mat-form-field>
+        </form>
+        <mat-form-field>
+          <mat-label>{{props ? props['scienseAreaTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="scientificInterestsArea">
+          <mat-icon matSuffix>sciense</mat-icon>
+          <mat-error *ngIf="scientificInterestsArea.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="passport">
+      <form [formGroup]="passportForm1">
+        <h2 class="mat-title">{{props ? props['enFormTooltip'] : ''}}</h2>
+        <mat-form-field>
+          <mat-label>{{props ? props['nameTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="name">
+          <mat-icon matSuffix>perm_identity</mat-icon>
+          <mat-error *ngIf="name1.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['famTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="familia">
+          <mat-icon matSuffix>perm_identity</mat-icon>
+          <mat-error *ngIf="familia1.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['otchTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="nasab">
+          <mat-icon matSuffix>perm_identity</mat-icon>
+          <mat-error *ngIf="nasab1.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['calFormTooltip'] : ''}}</mat-label>
+          <mat-icon matSuffix>campaign</mat-icon>
+          <mat-select formControlName="appealForm">
+            <mat-option *ngFor="let d of appealForms;let idx=index" [value]="idx">{{d}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['acadDegreeTooltip'] : ''}}</mat-label>
+          <mat-icon matSuffix>school</mat-icon>
+          <mat-select formControlName="academicDegree">
+            <mat-option *ngFor="let d of degrees;let idx=index" [value]="idx">{{d}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="academicDegree1.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['acadTitleTooltip'] : ''}}</mat-label>
+          <mat-icon matSuffix>school</mat-icon>
+          <mat-select formControlName="academicTitle">
+            <mat-option *ngFor="let d of acadTitles;let idx=index" [value]="idx">{{d}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="academicTitle1.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['positionTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="position">
+          <mat-icon matSuffix>engineering</mat-icon>
+          <mat-error *ngIf="position1.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['organisationTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="organisation">
+          <mat-icon matSuffix>door_sliding</mat-icon>
+          <mat-error *ngIf="organisation1.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{props ? props['departmentTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="department">
+          <mat-icon matSuffix>work_sharp</mat-icon>
+          <mat-error *ngIf="department1.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+        <form [formGroup]="address1">
+          <h2>{{props ? props['addressTooltip'] : ''}}</h2>
+          <mat-form-field>
+            <mat-label>{{props ? props['countryTooltip'] : ''}}</mat-label>
+            <input matInput formControlName="country">
+            <mat-icon matSuffix>perm_identity</mat-icon>
+            <mat-error *ngIf="country1.hasError('required')">
+              {{props ? props['mustBeFilledTooltip'] : ''}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{props ? props['cityTooltip'] : ''}}</mat-label>
+            <input matInput formControlName="city">
+            <mat-icon matSuffix>location_city</mat-icon>
+            <mat-error *ngIf="city1.hasError('required')">
+              {{props ? props['mustBeFilledTooltip'] : ''}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{props ? props['streetTooltip'] : ''}}</mat-label>
+            <input matInput formControlName="street">
+            <mat-icon matSuffix>streetview</mat-icon>
+            <mat-error *ngIf="street1.hasError('required')">
+              {{props ? props['mustBeFilledTooltip'] : ''}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{props ? props['houseTooltip'] : ''}}</mat-label>
+            <input matInput formControlName="house">
+            <mat-icon matSuffix>home</mat-icon>
+            <mat-error *ngIf="house1.hasError('required')">
+              {{props ? props['mustBeFilledTooltip'] : ''}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{props ? props['mailIndexTooltip'] : ''}}</mat-label>
+            <input matInput formControlName="mailIndex">
+            <mat-icon matSuffix>mail</mat-icon>
+            <mat-error *ngIf="mailIndex1.hasError('required')">
+              {{props ? props['mustBeFilledTooltip'] : ''}}
+            </mat-error>
+          </mat-form-field>
+        </form>
+        <mat-form-field>
+          <mat-label>{{props ? props['scienseAreaTooltip'] : ''}}</mat-label>
+          <input matInput formControlName="scientificInterestsArea">
+          <mat-icon matSuffix>sciense</mat-icon>
+          <mat-error *ngIf="scientificInterestsArea1.hasError('required')">
+            {{props ? props['mustBeFilledTooltip'] : ''}}
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <h2 class="mat-title">{{props ? props['authorIdsTooltip'] : ''}}</h2>
+  <form [formGroup]="authorIds">
+    <div class="id" *ngFor="let s of ID_SERVERS">
+      <h3>{{s.name}}</h3>
+      <mat-form-field>
+        <mat-label>{{s.hint}}</mat-label>
+        <input matInput formControlName="{{s.controlName}}">
+        <mat-icon matSuffix>vpn_key</mat-icon>
+      </mat-form-field>
+      <div class="passportContainer">
+        <button mat-raised-button >{{props ? props['checkProfileTooltip'] : ''}}</button>
+        <button mat-raised-button >{{props ? props['regTooltip'] : ''}}</button>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <button mat-raised-button (click)="saveClick()">{{props ? props['saveTooltip'] : ''}}</button>
+</div>
+<div class="error" *ngIf="showError">
+  <h4>{{props ? props ['loginHdr'] : ""}}</h4>
+  <p class="error-message">{{errMsg}}</p>
+  <button mat-raised-button color="warn" (click)="onErrOK()">OK</button>
+</div>
+<div class="loading-spinner" *ngIf="showLoadingSpinner"></div>

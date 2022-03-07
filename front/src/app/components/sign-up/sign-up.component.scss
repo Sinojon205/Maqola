@@ -1,0 +1,73 @@
+@import '../../../scss/palette';
+@import '../../../scss/set';
+
+:host {
+  display: flex;
+  margin: 50px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 72px;
+
+  & h1 {
+    color: $primary-color-dark;
+    text-align: center;
+    line-height: 3;
+  }
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 80%;
+  max-width: 950px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+}
+
+.passportContainer {
+  display: flex;
+
+}
+
+.passport {
+  margin: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.id {
+  display: contents;
+  width: 100%;
+  position: relative;
+}
+
+.mat-icon {
+  color: $primary-color-dark;
+}
+
+.error {
+  background-color: #fff;
+  width: 400px;
+  position: fixed;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 10px 16px;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(50% + 180px);
+
+  > h4, p {
+    margin-top: 0;
+  }
+}

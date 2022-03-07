@@ -1,0 +1,48 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.top, .bottom {
+  height: 70px;
+  background: #0a3f89;
+  display: flex;
+  align-items: center;
+}
+
+.top {
+  justify-content: flex-end;
+}
+
+.bottom {
+  justify-content: space-evenly;
+  padding: 1px;
+}
+
+.middle {
+  height: 158px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.title-holder {
+  background: url('../assets/logo.png') no-repeat 0;
+  float: left;
+  padding: 20px 0 20px 200px;
+  height: 134px;
+}
+
+.title-text-uppercase {
+  display: block;
+  font-size: 34px;
+  text-transform: uppercase;
+  color: #0a3f89;
+}
+
+.title-text {
+  display: block;
+  font-size: 31px;
+  color: #0a3f89;
+}

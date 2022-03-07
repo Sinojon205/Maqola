@@ -1,0 +1,28 @@
+<header *ngIf="rout!='sign-in'">
+  <section class="top">
+    <div ><span style="color: white;font-size: 30px;">{{user}}</span>
+      <button mat-raised-button (click)=" onLogOutClick()" color="accent" style="margin: 0 20px;"><mat-icon style="color: white">logout</mat-icon></button>
+    </div>
+  </section>
+  <section class="middle">
+    <div class="title-holder">
+      <h1><span class="title-text-uppercase">Таджикский технический Университет</span> <span class="title-text">имени академика М.С.Осими</span>
+      </h1>
+    </div>
+  </section>
+  <section class="bottom">
+    <button mat-raised-button [color]="rout!='main-view'?'primary':'accent'"
+            (click)="goToRout('main-view')">{{props ? props['mainTooltip'] : ''}}</button>
+    <button mat-raised-button [color]="rout!='add-article'?'primary':'accent'"
+            (click)="goToRout('add-article')">{{props ? props['addArticleTooltip'] : ''}}</button>
+    <button mat-raised-button [color]="rout!='help-view'?'primary':'accent'"
+            (click)="goToRout('help-view')">{{props ? props['showHelpTooltip'] : ''}} </button>
+    <button mat-raised-button [color]="rout!='sign-up'?'primary':'accent'"
+            (click)="goToRout('sign-up')">{{props ? props['showUesrInfoTooltip'] : ''}} </button>
+  </section>
+</header>
+
+<div class="wrapper">
+  <router-outlet></router-outlet>
+  <router-outlet name="popup"></router-outlet>
+</div>

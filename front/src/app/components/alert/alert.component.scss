@@ -1,0 +1,10 @@
+@import '../../../scss/palette';
+@import '../../../scss/set';
+
+.footer {
+  padding-top: 15px;
+  text-align: right;
+  > button {
+    margin: 0 3px;
+  }
+}

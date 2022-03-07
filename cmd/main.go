@@ -5,28 +5,44 @@ import (
 	"github.com/Sinojon205/maqola/pkg/handler"
 	"github.com/Sinojon205/maqola/pkg/repository"
 	"github.com/Sinojon205/maqola/pkg/service"
-	"github.com/spf13/viper"
-	"log"
+	"github.com/sirupsen/logrus"
+	"gopkg.in/yaml.v2"
+	"io/ioutil"
 )
 
-func main() {
-	if err := initConfig(); err != nil {
-		log.Fatalf("error initializing configs: %s", err.Error())
-	}
+type Config struct {
+	Port        string `yaml:"port"`
+	LlogLevel   string `yaml:"logLevel"`
+	DatabaseUrl string `yaml:"databaseUrl"`
+}
 
-	repos := repository.NewRepository()
+func main() {
+	config := initConfig()
+	store, err := repository.New(config.DatabaseUrl)
+	if err != nil {
+		logrus.Fatalf("error  connecting to database: %s", err.Error())
+	}
+	store.Open()
+	repos := repository.NewRepository(store)
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 	srv := new(maqola.Server)
 
-	if err := srv.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
-		log.Fatalf("error occured while running http server: %s", err.Error())
+	if err := srv.Run(config.Port, handlers.InitRoutes()); err != nil {
+		logrus.Fatalf("error occured while running http server: %s", err.Error())
 	}
 
 }
 
-func initConfig() error {
-	viper.AddConfigPath("configs")
-	viper.SetConfigName("config")
-	return viper.ReadInConfig()
+func initConfig() *Config {
+	yamlFile, err := ioutil.ReadFile("configs/config.yml")
+	c := &Config{}
+	if err != nil {
+		logrus.Printf("yamlFile.Get err   #%v ", err)
+	}
+	err = yaml.Unmarshal(yamlFile, &c)
+	if err != nil {
+		logrus.Printf("yamlFile.Get err   #%v ", err)
+	}
+	return c
 }

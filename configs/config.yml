@@ -1,1 +1,3 @@
-port: "8000"
+port: 8000
+logLevel: debug
+databaseUrl: mongodb://localhost:27017

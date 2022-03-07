@@ -1,0 +1,176 @@
+<div class="info">
+  <div>
+    <form [formGroup]="ruInfoForm">
+      <h2 class="mat-title">{{props ? props['ruFormTooltip'] : ''}}</h2>
+      <mat-form-field>
+        <mat-label>{{props ? props['titleTooltip'] : ''}}</mat-label>
+        <textarea matInput formControlName="title"></textarea>
+        <mat-icon matSuffix>title</mat-icon>
+        <mat-error *ngIf="title.hasError('required')">
+          {{props ? props['mustBeFilledTooltip'] : ''}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{props ? props['annotationTooltip'] : ''}}</mat-label>
+        <textarea matInput formControlName="annotation"></textarea>
+        <mat-icon matSuffix>short_text</mat-icon>
+        <mat-error *ngIf="annotation.hasError('required')">
+          {{props ? props['mustBeFilledTooltip'] : ''}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{props ? props['keywordsTooltip'] : ''}}</mat-label>
+        <textarea matInput formControlName="keywords"></textarea>
+        <mat-icon matSuffix>short_text</mat-icon>
+        <mat-error *ngIf="keywords.hasError('required')">
+          {{props ? props['mustBeFilledTooltip'] : ''}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{props ? props['literTooltip'] : ''}}</mat-label>
+        <textarea matInput formControlName="liter"></textarea>
+        <mat-icon matSuffix>book</mat-icon>
+        <mat-error *ngIf="liter.hasError('required')">
+          {{props ? props['mustBeFilledTooltip'] : ''}}
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div>
+    <form [formGroup]="enInfoForm">
+      <h2 class="mat-title">{{props ? props['enFormTooltip'] : ''}}</h2>
+      <mat-form-field>
+        <mat-label>{{props ? props['titleTooltip'] : ''}}</mat-label>
+        <textarea matInput formControlName="title"></textarea>
+        <mat-icon matSuffix>title</mat-icon>
+        <mat-error *ngIf="title1.hasError('required')">
+          {{props ? props['mustBeFilledTooltip'] : ''}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{props ? props['annotationTooltip'] : ''}}</mat-label>
+        <textarea matInput formControlName="annotation"></textarea>
+        <mat-icon matSuffix>short_text</mat-icon>
+        <mat-error *ngIf="annotation1.hasError('required')">
+          {{props ? props['mustBeFilledTooltip'] : ''}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{props ? props['keywordsTooltip'] : ''}}</mat-label>
+        <textarea matInput formControlName="keywords"></textarea>
+        <mat-icon matSuffix>short_text</mat-icon>
+        <mat-error *ngIf="keywords1.hasError('required')">
+          {{props ? props['mustBeFilledTooltip'] : ''}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{props ? props['literTooltip'] : ''}}</mat-label>
+        <textarea matInput formControlName="liter"></textarea>
+        <mat-icon matSuffix>book</mat-icon>
+        <mat-error *ngIf="liter1.hasError('required')">
+          {{props ? props['mustBeFilledTooltip'] : ''}}
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+<div class="authors">
+  <h2 class="mat-title">{{props ? props['authorListTooltip'] : ''}}</h2>
+  <div *ngFor="let author of authors">
+    <h3 class="mat-title">{{props ? props['ruInfoTooltip'] : ''}}</h3>
+    <p>{{author.passports[0].familia}}</p>
+    <h3 class="mat-title">{{props ? props['enInfoTooltip'] : ''}}</h3>
+    <p>{{author.passports[1].familia}}</p>
+  </div>
+  <div>
+    <div *ngIf="isAddUserOpen">
+      <mat-form-field>
+        <mat-label>{{props ? props['addUserLabel'] : ''}}</mat-label>
+        <input [(ngModel)]="authorName" matInput>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <ul *ngIf="authorName!==''">
+        <li (click)="selectUser('author1')">author1</li>
+        <li (click)="selectUser('author2')">author2</li>
+        <li (click)="selectUser('author3')">author3</li>
+        <li (click)="selectUser('author4')">author4</li>
+        <li (click)="selectUser('author5')">author5</li>
+        <li (click)="selectUser('author6')">author6</li>
+      </ul>
+    </div>
+    <button mat-raised-button color="primary"
+            (click)="addUserClick()">{{props ? props['addAuthorTooltip'] : ''}} </button>
+  </div>
+</div>
+<div class="uploads">
+  <form [formGroup]="otherDataForm">
+    <mat-form-field>
+      <mat-label>{{props ? props['udkTooltip'] : ''}}</mat-label>
+      <textarea matInput formControlName="udk"></textarea>
+      <mat-icon matSuffix>short_text</mat-icon>
+      <mat-error *ngIf="udk.hasError('required')">
+        {{props ? props['mustBeFilledTooltip'] : ''}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{props ? props['financingTooltip'] : ''}}</mat-label>
+      <textarea matInput formControlName="financing"></textarea>
+      <mat-icon matSuffix>short_text</mat-icon>
+    </mat-form-field>
+  </form>
+  <div mat-form-field>
+    <button mat-raised-button color="primary"
+            (click)="onUploadClick('skan','')">{{props ? props['expZakTooltip'] : ''}}</button>
+  </div>
+  <div class="file-holder">
+    <file-view *ngFor="let f of (files['skan']??[])" [file]="f" (actionEmit)="onActionEmit($event,'skan')"></file-view>
+  </div>
+  <div mat-form-field>
+    <mat-label>{{props ? props['licDogLabel'] : ''}}</mat-label>
+    <button mat-raised-button color="primary"
+            (click)="onUploadClick('skanLic','')">{{props ? props['licDogTooltip'] : ''}}</button>
+  </div>
+  <div class="file-holder">
+    <file-view *ngFor="let f of (files['skanLic']??[])" [file]="f" (actionEmit)="onActionEmit($event,'skanLic')"></file-view>
+  </div>
+  <div mat-form-field>
+    <mat-label>{{props ? props['fullTextLabel'] : ''}}</mat-label>
+    <button mat-raised-button color="primary"
+            (click)="onUploadClick('text','*.doc, *.docx, *.rar',false)">{{props ? props['fullTextTooltip'] : ''}}</button>
+  </div>
+  <div class="file-holder">
+    <file-view *ngFor="let f of (files['text']??[])" [file]="f" (actionEmit)="onActionEmit($event,'text')"></file-view>
+  </div>
+  <div mat-form-field>
+    <mat-label>{{props ? props['fullTextLicLabel'] : ''}}</mat-label>
+    <button mat-raised-button color="primary"
+            (click)="onUploadClick('licText','*.doc, *.docx, *.rar',false)">{{props ? props['fullTextLicTooltip'] : ''}}</button>
+  </div>
+  <div class="file-holder">
+    <file-view *ngFor="let f of (files['licText']??[])" [file]="f" (actionEmit)="onActionEmit($event,'licText')"></file-view>
+  </div>
+  <div mat-form-field>
+    <mat-label>{{props ? props['picLabel'] : ''}}</mat-label>
+    <button mat-raised-button color="primary"
+            (click)="onUploadClick('pic','*.cdr, *.psd, *.eps, *.tiff')">{{props ? props['picTooltip'] : ''}}</button>
+  </div>
+  <div class="file-holder">
+    <file-view *ngFor="let f of (files['pic']??[])" [file]="f" (actionEmit)="onActionEmit($event,'pic')"></file-view>
+  </div>
+  <div mat-form-field>
+    <mat-label>{{props ? props['tableLabel'] : ''}}</mat-label>
+    <button mat-raised-button color="primary"
+            (click)="onUploadClick('table',' *.doc(docx), *.xls, *.jpg *.cdr, *.psd, *.tiff')">{{props ? props['tableTooltip'] : ''}}</button>
+  </div>
+  <div class="file-holder">
+    <file-view *ngFor="let f of (files['table']??[])" [file]="f" (actionEmit)="onActionEmit($event,'table')"></file-view>
+  </div>
+</div>
+<div class="panel">
+  <button mat-raised-button color="primary" (click)="onSaveClick()">{{props ? props['saveTooltip'] : ''}}</button>
+  <button mat-raised-button color="primary">{{props ? props['cancelTooltip'] : ''}}</button>
+  <button mat-raised-button color="primary">{{props ? props['sendToRedTooltip'] : ''}}</button>
+</div>
+<input #openDialog type="file" style="visibility: hidden;left:-1000px; position: absolute;"/>
+<button #inputBtn style="visibility: hidden;left:-1000px; position: absolute;" (click)="openDialog.click()"></button>

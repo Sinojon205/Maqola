@@ -1,0 +1,7 @@
+<button mat-icon-button (click)="onDeleteFile()"><mat-icon>close</mat-icon></button>
+<div class="image-holder">
+  <img [src]="imgUrl" [alt]="fileType" width="150" height="200"/>
+</div>
+<div class="footer">
+  <h3>{{file?.name || ''}}</h3>
+</div>

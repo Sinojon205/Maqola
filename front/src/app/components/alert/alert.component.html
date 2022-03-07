@@ -1,0 +1,7 @@
+<h2 class="mat-title">{{data.header}}</h2>
+<div class="main">
+  <p [innerHTML]="data.message"></p>
+</div>
+<footer class="footer">
+  <button mat-raised-button color="primary" (keyup.enter)="onClose()" (click)="onClose()">OK</button>
+</footer>

@@ -1,0 +1,30 @@
+<div class="login">
+  <h2 class="mat-title">Authentication</h2>
+  <form [formGroup]="loginForm">
+    <mat-form-field>
+      <mat-label>Login</mat-label>
+      <input autocomplete matInput formControlName="userName">
+      <mat-icon matSuffix>perm_identity</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input autocomplete matInput formControlName="password" type="password">
+      <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+    <mat-checkbox formControlName="hideRequired">Remember my password</mat-checkbox>
+
+    <div class="submit">
+      <button [style.cursor]="(logging) ? 'wait' : 'pointer'" mat-raised-button color="primary"
+              [disabled]="loginForm?.invalid" (click)="onLoginClick($event)">Login
+      </button>
+      <button mat-raised-button color="primary" (click)="onSignUpClick()">sign-up </button>
+    </div>
+  </form>
+</div>
+<div class="error" *ngIf="showError">
+  <h4>{{props ? props ['loginHdr'] : ""}}</h4>
+  <p class="error-message">{{errMsg}}</p>
+  <button mat-raised-button color="warn" (click)="onErrOK($event)">OK</button>
+</div>
+<div class="loading-spinner" *ngIf="showLoadingSpinner"></div>

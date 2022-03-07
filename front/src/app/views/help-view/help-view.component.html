@@ -1,0 +1,331 @@
+<div class="container">
+<button mat-raised-button [color]="showHelp!=1?'primary':'accent'"
+        (click)="showHelp=1">Декларация об этике
+</button>
+<button mat-raised-button [color]="showHelp!=2?'primary':'accent'"
+        (click)="showHelp=2">Как подать статью
+</button>
+<button mat-raised-button [color]="showHelp!=3?'primary':'accent'"
+        (click)="showHelp=3">Политика журнала
+</button>
+<button mat-raised-button [color]="showHelp!=4?'primary':'accent'"
+        (click)="showHelp=4">Порядок рецензирования
+</button>
+</div>
+<div class="container">
+  <div class="center_column" *ngIf="showHelp==1">
+    <h2>Декларация об этике</h2>
+    <div id="start"></div>
+    <div class="view">
+      <p style="text-align: justify; text-indent: 27pt"><span style="font-family: Arial"><font size="3">Этический кодекс журнала "Системы анализа и обработки данных" представляет собой свод правил, на которых строятся взаимоотношения авторов, редакторов и рецензентов в процессе рассмотрения и опубликования статей. Соблюдение правил этики всеми участниками этого процесса&nbsp; способствует обеспечению прав авторов на интеллектуальную собственность, повышению качества издания в глазах профессионального сообщества и исключению возможности неправомерного использования авторских материалов в интересах отдельных лиц.
+      <p></p></font></span>
+      </p>
+      <p style="text-align: justify; text-indent: 27pt"><span style="font-family: Arial"><font size="3">Редакция в своей деятельности руководствуется рекомендациями и стандартами Комитета по этике публикаций - Committee on Publication Ethics (COPE)(</font><a
+        href="http://publicationethics.org/"><font size="3">http://publicationethics.org</font></a><font size="3">) , а также учитывает ценный опыт авторитетных международных журналов и издательств.
+      <p></p></font></span>
+      </p>
+      <p style="text-align: justify; text-indent: 27pt"><span style="font-family: Arial"><font size="3">Кодекс этики научных публикаций объединяет и раскрывает общие принципы и правила, которыми должны руководствоваться в своих взаимоотношениях участники процесса научных публикаций: авторы, рецензенты, редакторы, издатели, распространители и читатели.</font></span>
+      </p>
+      <p style="text-align: justify; text-indent: 27pt"><span style="font-family: Arial"><font size="3">
+      <p></p></font></span>
+      </p>
+      <p style="text-align: center" align="center"><font size="3"><strong><span style="font-family: Arial">Ответственность редакционного совета</span></strong><span
+        style="font-family: Arial">
+      <p></p></span></font></p>
+      <ol type="1">
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l1 level1 lfo1; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto">
+          <span style="font-family: Arial"><font size="3">Редакция должна рассматривать все представленные к публикации рукописи исключительно по их научному содержанию, без предубеждения к их авторам (безотносительно расы, пола, сексуальной ориентации, религиозных убеждений, этнической принадлежности, гражданства и политических взглядов авторов, служебному положению), с безусловным уважением их права на интеллектуальную собственность и в контексте предшествующих публикаций этих авторов.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l1 level1 lfo1; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto">
+          <span style="font-family: Arial"><font size="3">Если автором рукописи является член редакционной коллегии, он должен делегировать свои права в отношении рассмотрения этой рукописи другому квалифицированному лицу.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l1 level1 lfo1; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto">
+          <span style="font-family: Arial"><font size="3">Редакция проводит предварительный отбор и рецензирование представленных рукописей и оставляет за собой право принять рукопись к опубликованию, отклонить ее или направить на доработку.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l1 level1 lfo1; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto">
+          <span style="font-family: Arial"><font size="3">Редакция оставляет за собой выбор способа рецензирования (открытое, анонимное) и количества привлеченных рецензентов с целью обеспечения беспристрастного&nbsp; рассмотрения рукописи. Никто, за исключением лиц, участвующих в профессиональной оценке рукописи, не имеет доступа к ее содержанию.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l1 level1 lfo1; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto">
+          <span style="font-family: Arial"><font size="3">В случае принятия рукописи к опубликованию ее авторам направляется уведомление о предположительных сроках выхода публикации, статья публикуется и размещается в связанных с изданием электронных ресурсах; в случае отклонения рукописи или ее направления на доработку редакция должна представить авторам статьи достаточные обоснования такого решения.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l1 level1 lfo1; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto">
+          <span style="font-family: Arial"><font size="3">Статья, в случае принятия к опубликованию, размещается в открытом доступе; авторские права сохраняются за авторами, в соответствии с лицензионным договором подписанным авторами. Опубликованные материалы не могут быть воспроизведены полностью или частично без предварительного письменного согласия авторов и редакции журнала. При их цитировании и распространении по электронным сетям необходима ссылка на первоисточник.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l1 level1 lfo1; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto">
+          <span style="font-family: Arial"><font size="3">Информация, содержащаяся в неопубликованной рукописи, может быть использована только с согласия ее авторов.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l1 level1 lfo1; mso-margin-top-alt: auto; mso-margin-bottom-alt: auto">
+          <span style="font-family: Arial"><font size="3">При наличии достаточных доказательств ошибочности опубликованных в издании материалов редакция должна организовать публикацию сообщения об ошибке за подписью обнаруживших ее лиц.<p></p></font></span>
+        </li>
+      </ol>
+      <p class="MsoNormal" style="margin: 0cm 0cm 0pt"><span style="font-family: Arial">
+      <p><font
+        size="3">&nbsp;</font></p></span></p>
+      <p class="MsoNormal" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><b
+        style="mso-bidi-font-weight: normal"><span style="font-family: Arial"><font size="3">Ответственность авторов
+      <p></p></font></span></b>
+      </p>
+      <p class="MsoNormal" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><b
+        style="mso-bidi-font-weight: normal"><span style="font-family: Arial">
+      <p><font
+        size="3">&nbsp;</font></p></span></b></p>
+      <ol style="margin-top: 0cm" type="1">
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l2 level1 lfo2"><span
+          style="font-family: Arial"><font size="3">Авторами статьи считаются лица, которые внесли существенный вклад в постановку и решение рассматриваемой в статье проблемы и разделяют ответственность за полученные результаты. Автор, представивший материал статьи в редакцию, берет на себя ответственность за согласие остальных авторов на ее публикацию.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l2 level1 lfo2"><span
+          style="font-family: Arial"><font size="3">Авторы статьи отвечают за достоверность контактной информации, а также за оригинальность представленного материала. Этот материал не должен быть опубликован ранее или направлен для параллельного опубликования в другие издания в его нынешней или близкой по содержанию форме, а также не должен содержать плагиата, не должен нарушать ни одно из существующих авторских прав. Нарушение этих обязательств служит основанием для отклонения статьи.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l2 level1 lfo2"><span
+          style="font-family: Arial"><font size="3">Авторы статьи несут всю полноту ответственности за возможный ущерб или потенциальный конфликт интересов, связанный с<span
+          style="mso-spacerun: yes">&nbsp; </span>ее опубликованием. Редакция может отклонить статью, если она нарушает интеллектуальные права третьих лиц, нормы научной этики или информацию, предназначенную для ограниченного доступа, с уведомлением авторов и организации, направившей статью.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l2 level1 lfo2"><span
+          style="font-family: Arial"><font size="3">Авторы статьи должны в пределах ее ограниченного (не более 6-8 страниц) объема дать объективную оценку состояния решаемой проблемы, основанную на достаточном анализе существенных для данной работы предшествующих публикаций, показать значение полученных результатов, а также привести точное описание предложенных способов решения поставленных задач и возможные сложности, связанные с их воспроизведением.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l2 level1 lfo2"><span
+          style="font-family: Arial"><font size="3">Авторы должны добросовестно и в установленные редакцией сроки устранять замечания к статье, сделанные редколлегией или рецензентом и обусловливающие возможность ее опубликования.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l2 level1 lfo2"><span
+          style="font-family: Arial"><font size="3">Серия статей, в которых публикуются результаты комплексного исследования, должна быть организована таким образом, чтобы читатель мог получить исчерпывающее представление как о структуре исследования в целом, так и о каждом его аспекте, освещенном в соответствующей статье.<p></p></font></span>
+        </li>
+      </ol>
+      <p><span
+        style="font-family: Arial; font-size: 12pt; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: RU; mso-fareast-language: RU; mso-bidi-language: AR-SA"><br
+        style="page-break-before: always" clear="all">
+</span></p>
+      <p class="MsoNormal" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><b
+        style="mso-bidi-font-weight: normal"><span style="font-family: Arial"><font size="3">Ответственность рецензента
+      <p></p></font></span></b>
+      </p>
+      <p class="MsoNormal" style="text-align: center; margin: 0cm 0cm 0pt" align="center"><b
+        style="mso-bidi-font-weight: normal"><span style="font-family: Arial">
+      <p><font
+        size="3">&nbsp;</font></p></span></b></p>
+      <ol style="margin-top: 0cm" type="1">
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l0 level1 lfo3"><span
+          style="font-family: Arial"><font size="3">Оценка рецензентом представленного в рукописи анализа проблемы (достаточности и обоснованности ссылок на работы предшествующих исследователей), выполненных экспериментальных и теоретических исследований и полученных результатов должна быть объективной и учитывать соответствие выполненной работы научным, этическим (отсутствие плагиата) и литературным стандартам.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l0 level1 lfo3"><span
+          style="font-family: Arial"><font size="3">Оценка рукописи рецензентом должна содержать достаточные обоснования его выводов для авторов рукописи и членов редакционного совета; если рецензент утверждает, что содержащие в рукописи сведения были опубликованы ранее, он должен подтвердить это соответствующими ссылками.<span
+          style="mso-spacerun: yes">&nbsp; </span><p></p></font></span></li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l0 level1 lfo3"><span
+          style="font-family: Arial"><font size="3">Персональная критика авторов статьи и использование в рецензии клеветнических и порочащих авторов аргументов в рецензии недопустимы.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l0 level1 lfo3"><span
+          style="font-family: Arial"><font size="3">При наличии конфликта интересов рецензента с интересами авторов статьи, несоответствии содержащихся в рукописи исследований сфере его научной компетенции, наличии профессиональных связей с авторами, которые могут повлиять на объективность рецензии, или невозможности выполнения работы в установленные сроки рецензент<span
+          style="mso-spacerun: yes">&nbsp; </span>обязан заявить об этом редакции и отказаться от оценки рукописи.<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l0 level1 lfo3"><span
+          style="font-family: Arial"><font size="3">Рецензент должен уважать конфиденциальность неопубликованных материалов (не использовать их в обсуждениях с коллегами или в собственных исследованиях, за исключением прекращения рецензентом собственных исследований на основании знакомства с неопубликованным материалом).<p></p></font></span>
+        </li>
+        <li class="MsoNormal"
+            style="text-align: justify; margin: 0cm 0cm 0pt; tab-stops: list 36.0pt; mso-list: l0 level1 lfo3"><span
+          style="font-family: Arial"><font size="3">Рецензент может передать рукопись для консультации другому лицу только с согласия редакции.<p></p></font></span>
+        </li>
+      </ol>
+      <p>&nbsp;</p>
+    </div>
+
+
+  </div>
+  <div class="center_column"*ngIf="showHelp==2">
+    <h2>Как подать статью</h2>
+    <div id="start"></div>
+
+    <div class="view">
+      <div style="text-align: center; margin: 10pt 0cm 6pt" align="center"><span style="font-family: Arial"><span
+        style="font-size: medium"><strong>Условия приема статей</strong></span></span></div>
+      <div style="text-align: justify; text-indent: 17pt"><span style="font-size:medium;">Для того, чтобы подать статью, автор (все соавторы) должны быть </span><a
+        href="http://journals.nstu.ru/vestnik/registration"><span style="font-size:medium;">зарегистрированы на сайте журнала</span></a><span
+        style="font-size:medium;">. Автор (один из соавторов) в своем кабинете выбирает в меню пункт «Подать статью» и вводит все необходимые данные. Своих соавторов при этом он выбирает из списка зарегистрированных пользователей.<br>
+<br>
+Рукопись статьи готовится в соответствии </span><a href="http://journals.nstu.ru/vestnik/rules"><span
+        style="font-size:medium;">с правилами оформления </span></a><span style="font-size:medium;">в редакторе MS Word и прикрепляется в формате *.doc, *.docx.<br>
+<br>
+Сканированные лицензионный договор с подписями авторов и экспертное заключение (цветной режим сканирования, разрешение не менее 600 dpi) необходимо также прикрепить на сайте журнала в разделе «Подать статью» в формате *.pdf, *.jpg, *.jpeg.<br>
+<br>
+По окончанию всех работ обязательно нажать кнопку «Отправить в редакцию».</span></div>
+      <div style="text-align: justify; text-indent: 17pt">&nbsp;</div>
+      <div style="text-align: justify; text-indent: 17pt"><span style="font-size: medium;"><span
+        style="font-family: Arial, Helvetica, sans-serif; line-height: 22px; color: rgb(255, 0, 0);"><strong>Важно:</strong></span><span
+        style="font-family: Arial, Helvetica, sans-serif; line-height: 22px;">&nbsp;Работа должна поступить не позже, чем за 3 месяца до официального выхода номера в свет согласно графику. В исключительных случаях, по согласованию с редакцией журнала, срок приема статьи в ближайший номер может быть продлен, но не более чем на две недели. Перед отправкой рукописи в редакцию настоятельно рекомендуется авторам проверить свою статью с помощью системы&nbsp;</span></span><span
+        style="font-size: medium;"><a href="http://www.antiplagiat.ru/" target="_blank"
+                                      style="color: rgb(44, 73, 112); font-size: 14.6667px; line-height: 22px; font-family: Trebuchet, sans-serif;"><span
+        style="color: rgb(255, 0, 0);"><strong>Антиплагиат</strong></span></a><em
+        style="font-family: Arial, Helvetica, sans-serif; font-size: 14.6667px; line-height: 22px;"><strong><span
+        style="color: rgb(96, 96, 96); font-family: Trebuchet, sans-serif;">.</span></strong></em></span></div>
+      <div style="text-align: justify; text-indent: 17pt">&nbsp;</div>
+      <div style="text-align: justify; text-indent: 17pt"><span style="font-family: Arial"><span
+        style="font-size: medium">В редакцию журнала </span></span><span style="font-family: Arial"><span
+        style="font-size: medium"><span style="font-size: medium">"Системы анализа и обработки данных" </span>представляются следующие </span><span
+        style="font-size: medium">материалы: </span></span></div>
+      <div style="text-align: justify; text-indent: 17pt; text-autospace: ideograph-numeric; punctuation-wrap: hanging">
+        <span style="font-family: Arial"><span style="font-size: medium">1.&nbsp;Статья –&nbsp;подготовленная в соответствии с правилами оформления, печатная версия, 2 экземпляра, подписанные авторами.</span></span>
+      </div>
+      <div style="text-align: justify; text-indent: 17pt; text-autospace: ideograph-numeric; punctuation-wrap: hanging">
+        <span style="font-family: Arial"><span style="font-size: medium">2.&nbsp;Контактная информация (телефоны раб. и сот., адреса электронной почты, место работы, адрес места работы,&nbsp;должность, ученая степень, ученое звание автора) – печатная версия, 2 экземпляра.</span></span>
+      </div>
+      <div style="text-align: justify; text-indent: 17pt; text-autospace: ideograph-numeric; punctuation-wrap: hanging">
+        <span style="font-family: Arial"><span style="font-size: medium">3.&nbsp;Описание статьи для базы данных «Российский индекс научного цитирования (РИНЦ)» –&nbsp;подготовленное в соответствии с правилами оформления, печатная версия, 1 экземпляр. </span></span>
+      </div>
+      <div style="text-align: justify; text-indent: 17pt; text-autospace: ideograph-numeric; punctuation-wrap: hanging">
+        <span style="font-family: Arial"><span style="font-size: medium">4. Лицензионный договор, заполненный и подписанный отправляется со всем пакетом документов, сканированный заполненный договор записывается на диск. </span></span>
+      </div>
+      <div style="text-align: justify; text-indent: 17pt; text-autospace: ideograph-numeric; punctuation-wrap: hanging">
+        <span style="font-family: Arial"><span style="font-size: medium">5.&nbsp;Электронная версия статьи, контактной информации, описания статьи для базы данных РИНЦ, сканированный лицензионный договор&nbsp;(в отдельных файлах на CD).</span></span>
+      </div>
+      <div style="text-align: justify; text-indent: 17pt; text-autospace: ideograph-numeric; punctuation-wrap: hanging">
+        <span style="font-family: Arial"><span style="font-size: medium">6.&nbsp;Экспертное заключение о возможности опубликования.</span></span>
+      </div>
+      <div style="text-align: justify; text-indent: 17pt; text-autospace: ideograph-numeric; punctuation-wrap: hanging">
+        &nbsp;
+      </div>
+      <div style="text-align: justify; text-indent: 17pt; text-autospace: ideograph-numeric; punctuation-wrap: hanging">
+        &nbsp;
+      </div>
+      <div style="text-align: justify; text-indent: 17pt; text-autospace: ideograph-numeric; punctuation-wrap: hanging">
+        <span style="font-family: Arial"><span style="font-size: medium">Редакцией рассматриваются только те материалы авторов, которые полностью соответствуют вышеобозначенным требованиям. «Недоукомплектованный» пакет материалов редакцией не рассматривается!</span></span>
+      </div>
+      <div style="text-align: justify; text-indent: 17pt; text-autospace: ideograph-numeric; punctuation-wrap: hanging">
+        &nbsp;
+      </div>
+      <div style="text-align: justify; text-indent: 17pt; text-autospace: ideograph-numeric; punctuation-wrap: hanging"><span
+        style="font-family: Arial"><span style="font-size: medium">
+<div style="text-align: justify; text-indent: 17pt"><span style="font-size: medium"><span style="font-family: Arial">Обращаем Ваше внимание на раздел "Правила оформления", в этом разделе можно подробно ознакомиться с правилами оформления и&nbsp;примерами.</span></span></div>
+</span></span></div>
+      <div style="text-align: justify; text-indent: 17pt; text-autospace: ideograph-numeric; punctuation-wrap: hanging"><span
+        style="font-family: Arial"><span style="font-size: medium">
+<div style="text-align: justify; margin: 10pt 0cm 6pt"><span style="font-size: medium"><span style="font-family: Arial">Подготовленные материалы направляются&nbsp;на почтовый адрес редакции: <u>630073, г. Новосибирск, пр-т Карла Маркса, 20, Новосибирский государственный технический университет (НГТУ), корп. 7, ком. 409, ком. 417,&nbsp; в редакцию журнала "Научный вестник НГТУ"</u>.</span></span></div>
+</span></span></div>
+      <div style="text-align: justify; text-indent: 17pt">&nbsp;</div>
+      <div style="text-align: justify; text-indent: 17pt"><span style="font-family: Arial"><span
+        style="font-size: medium">Все рукописи рецензируются, по результатам рецензирования редколлегия принимает решение о целесообразности опубликования материалов. </span></span>
+      </div>
+      <div style="text-align: justify; text-indent: 17pt"><span style="font-family: Arial"><span
+        style="font-size: medium">Плата за публикацию рукописей не взимается.</span></span></div>
+    </div>
+
+
+  </div>
+  <div class="center_column" *ngIf="showHelp==3">
+
+    <h2>Политика журнала</h2>
+
+
+    <div id="start"></div>
+
+    <div class="view">
+      <div style="text-align: justify; text-indent: 18pt"><span style="font-size: medium"><span
+        style="font-family: Arial">&nbsp;Главной целью создания журнала является освещение научных трудов ведущих ученых и практиков, осуществляющих свою деятельность в области информационных технологий, физики, автоматики. Журнал адресован научным работникам, аспирантам, инженерам и студентам, интересующимся результатами фундаментальных и прикладных исследований. Круг авторов журнала широк: от ведущих научных центров и вузов России до ближнего и дальнего зарубежья. Все без исключения статьи рецензируются.</span></span>
+      </div>
+      <div style="text-align: justify; text-indent: 18pt"><span style="font-size: medium"><span
+        style="font-family: Arial"><br>
+</span></span></div>
+    </div>
+
+
+  </div>
+  <div class="center_column"*ngIf="showHelp==4">
+    <h2>Порядок рецензирования</h2>
+    <div id="start"></div>
+
+    <div class="view">
+      <p style="text-align: justify"><span style="font-size: medium">&nbsp;Порядок рецензирования</span></p>
+      <p class="MsoNormal" style="text-align: justify">
+      <p><span style="font-size: medium">&nbsp;</span></p>
+      <span style="font-size: medium"><span style="mso-spacerun: yes">&nbsp; </span>Редколлегия журнала "Системы анализа и обработки данных", утвердила следующий порядок рецензирования</span>
+
+      <p class="MsoNormal" style="text-align: center" align="center"><span style="font-size: medium">1.<span
+        style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>Общие положения</span></p>
+      <p class="MsoNormal" style="text-align: justify"><span style="font-size: medium"><span style="mso-spacerun: yes">&nbsp;&nbsp; </span>Рукописи всех статей, поступивших в редакцию журнала «Научный вестник НГТУ», подлежат обязательному рецензированию. К рецензированию привлекаются ученые, имеющие признанный авторитет и работающие в области знаний, к которой относится содержание рукописи и имеют в течение последних 3 лет публикации по тематике рецензируемой статьи. Рукопись, поступившая в редакцию журнала, направляется двум независимым рецензентам. Если мнения рецензентов не совпадают, редколлегия направляет рукопись на рецензирование третьему специалисту. Рецензии обсуждаются редколлегией и служат основанием для принятия или отклонения рукописей.<span
+        style="mso-spacerun: yes">&nbsp; </span>Рукопись, поступившая в редакцию журнала «Научный вестник НГТУ», отклоняется без рецензирования, если она не оформлена в соответствии с утвержденными правилами. В этом случае авторам высылается мотивированное уведомление по электронной почте.<span
+        style="mso-spacerun: yes"> Рецензии хранятся в редакции издания в течение 5 лет.&nbsp;</span></span></p>
+      <p class="MsoNormal" style="text-align: center" align="center"><span style="font-size: medium">2.<span
+        style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>Сроки рецензирования</span></p>
+      <p class="MsoNormal" style="text-align: justify"><span style="font-size: medium"><span style="mso-spacerun: yes">&nbsp;&nbsp; </span>Рукопись, поступившая в редакцию журнала </span><span
+        style="font-size: medium"><span style="font-size: medium">"Системы анализа и обработки данных"</span>, направляется на рецензирование в течение месяца с момента поступления. Рецензент представляет рецензию в редакцию в течение месяца с момента получения им рукописи. Редколлегия принимает решение о публикации или отклонении рукописи в течение месяца с момента получения рецензий. При необходимости повторное рецензирование проводится в такие же сроки.<span
+        style="mso-spacerun: yes">&nbsp; </span>При получении каждой рецензии авторам высылается уведомление по электронной почте. Рецензия предоставляется авторам для ознакомления без раскрытия имени рецензента. По запросам Министерства образования и науки РФ рецензии представляются в ВАК и/или Министерство.<span
+        style="mso-spacerun: yes">&nbsp; </span>Решение редакции о принятии или отклонении рукописи высылается авторам по электронной почте.</span>
+      </p>
+      <p class="MsoNormal" style="text-align: center" align="center"><span style="font-size: medium">3.<span
+        style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>Требования к рецензии</span></p>
+      <p class="MsoNormal" style="text-align: justify"><span style="font-size: medium"><span style="mso-spacerun: yes">&nbsp;&nbsp; </span>Рецензент вводит рецензию в базу данных журнала в интерактивном режиме, заполняя обязательные оценочные поля формы и добавляя по своему усмотрению текст рецензии. Чтобы иметь возможность ввести рецензию, рецензенту необходимо зарегистрироваться на сайте журнала.<span
+        style="mso-spacerun: yes">&nbsp; </span>Рецензент оценивает следующие качества рукописи:</span></p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">соответствие представленной работы профилю журнала;</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">актуальность работы;</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">чёткость формулирования задачи исследования;</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">выбор метода исследования;</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">степень достижения результатов;</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">новизна полученных результатов;</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">научная значимость результатов;</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">практическая ценность;</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">соответствие выводов достигнутым результатам;</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">качество аннотации (авторского резюме);</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">качество перевода аннотации на английский язык (необязательно);</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">соответствие списка цитируемых работ рассматриваемой проблеме;</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">структурированность работы;</span>
+      </p>
+      <p class="MsoNormal" style="margin-left: 27pt; text-align: justify"><span style="font-size: medium">стиль изложения.</span>
+      </p>
+      <p class="MsoNormal" style="text-align: justify"><span style="font-size: medium"><span style="mso-spacerun: yes">&nbsp; </span>Рецензент может дополнительно высказать свои пожелания и особые мнения о структуре, содержании, форме изложения, оформлении рукописи и т.п., введя текст в текстовое поле и/или прикрепив файл формата *.doc, *.docx.<span
+        style="mso-spacerun: yes">&nbsp; </span>Рецензент даёт заключение о целесообразности или нецелесообразности опубликования рецензируемой рукописи, либо о необходимости её доработки.<span
+        style="mso-spacerun: yes">&nbsp; </span>Сформированная таким образом рецензия распечатывается рецензентом с помощью пункта меню «Версия для печати», подписывается рецензентом и высылается в адрес редакции обычной почтой либо прикрепляется в виде цветной сканированной копии на сайте.<span
+        style="mso-spacerun: yes">&nbsp; </span>Авторам статьи или другим лицам, не являющимся членами редколлегии журнала, имена рецензентов не раскрываются. Содержание рецензии без указания имени рецензента становится доступно для ознакомления автору (всем соавторам) данной статьи, а также другим рецензентам данной статьи (также без указания имени рецензента).</span>
+      </p>
+      <p class="MsoNormal" style="text-align: center" align="center"><span style="font-size: medium">4.<span
+        style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>Взаимодействие авторов и рецензентов</span></p>
+      <p class="MsoNormal" style="text-align: justify"><span style="font-size: medium"><span style="mso-spacerun: yes">&nbsp;&nbsp; </span>Рецензии предоставляются для ознакомления авторам без указания имён рецензентов. Если автор желает возразить рецензенту, он может прислать в редакцию письмо, которое должно быть передано рецензенту в течение 2 недель.<span
+        style="mso-spacerun: yes">&nbsp; </span>Рецензент может по своему усмотрению ответить автору лично (в этом случае рецензент принимает на себя всю ответственность за возможные последствия раскрытия своего имени), передать ответ через редакцию или не отвечать. В последнем случае рецензент представляет в редакцию своё письменное заключение о целесообразности или нецелесообразности опубликования статьи с учетом содержания письма автора.Редакция имеет право не передавать рецензенту письмо автора, содержащее некорректные или оскорбительные выражения. В таких случаях редколлегия вправе самостоятельно принять решение об окончательном отклонении рукописи.</span>
+      </p>
+      <p class="MsoNormal" style="text-align: justify">&nbsp;</p>
+      <p class="MsoNormal" style="text-align: center;"><u
+        style="font-family: Arial, Helvetica, sans-serif; font-size: 14.6667px; line-height: 22px;"><strong>Заимствования
+        и плагиат</strong></u></p>
+      <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14.6667px; line-height: 22px;"><span
+        style="font-size: medium;">Редакция журнала </span><strong><span style="font-size: medium;"><span
+        style="font-size: medium">"Системы анализа и обработки данных"</span></span></strong><span
+        style="font-size: medium;"> при рассмотрении статьи может произвести проверку материала с помощью системы&nbsp;</span><a
+        href="https://www.antiplagiat.ru/" target="_blank" style="color: rgb(41, 70, 150);"><span
+        style="font-size: medium;"><strong>Антиплагиат</strong></span></a><span style="font-size: medium;">. В случае обнаружения многочисленных заимствований редакция действует в соответствии с правилами&nbsp;</span><em><u><strong><a
+        href="http://journals.nstu.ru/files/2_3/file/plagiarism%20A.pdf" target="_blank"
+        style="color: rgb(41, 70, 150);"><span style="font-size: medium;">COPE</span></a></strong></u></em><span
+        style="font-size: medium;">.</span></p>
+      <p class="MsoNormal" style="text-align: justify">&nbsp;</p>
+      <p>&nbsp;</p>
+    </div>
+
+
+  </div>
+</div>
