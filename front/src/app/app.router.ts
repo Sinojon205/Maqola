@@ -7,12 +7,14 @@ import {SignInComponent} from "./components/sign-in/sign-in.component";
 import {SignUpComponent} from "./components/sign-up/sign-up.component";
 import {AddArticleComponent} from "./components/add-article/add-article.component";
 import {HelpViewComponent} from "./views/help-view/help-view.component";
+import {MessageComponent} from "./views/message/message.component";
 
 const routes: Routes = [
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'help-view', component: HelpViewComponent,canActivate: [ConfigLoadGuard]},
-  {path: 'main-view', component: MainViewComponent,canActivate: [ConfigLoadGuard]},
+  {path: 'help-view', component: HelpViewComponent, canActivate: [ConfigLoadGuard]},
+  {path: 'main-view', component: MainViewComponent, canActivate: [ConfigLoadGuard]},
+  {path: 'messages', component: MessageComponent,/* canActivate: [ConfigLoadGuard]*/},
   {path: 'add-article', component: AddArticleComponent, canActivate: [ConfigLoadGuard]},
   {path: 'alert-popup', component: AlertComponent, canActivate: [ConfigLoadGuard], outlet: 'popup'}
 ];

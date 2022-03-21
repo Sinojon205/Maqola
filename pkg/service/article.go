@@ -11,6 +11,7 @@ import (
 	"lukechampine.com/blake3"
 	"os"
 	"strings"
+	"time"
 )
 
 var FOLDERS = []string{"skan/", "skanLic/", "text/", "licText/", "table/", "pic/"}
@@ -25,7 +26,7 @@ func NewArticleService(repo repository.Article) *ArticleService {
 	return &ArticleService{repo: repo}
 }
 
-func (article *ArticleService) CreateArticle(input maqola.ArticleInput) (string, error) {
+func (article *ArticleService) CreateArticle(input maqola.ArticleInput, userId string) (string, error) {
 	var output maqola.Article
 	zipFile, err := zip.NewReader(bytes.NewReader(input.Files), int64(len(input.Files)))
 	if err != nil {
@@ -57,6 +58,7 @@ func (article *ArticleService) CreateArticle(input maqola.ArticleInput) (string,
 	output.BaseData = input.BaseData
 	output.Finansing = input.Finansing
 	output.UDK = input.UDK
+	output.UserId = userId
 	existedFiles, err := article.repo.GetAllFiles(hashes)
 	if err != nil {
 		return "", err
@@ -104,6 +106,12 @@ func (article *ArticleService) CreateArticle(input maqola.ArticleInput) (string,
 	if err != nil {
 		return "", err
 	}
+	numb, err := article.repo.GetArticlesAmount()
+	if err != nil {
+		return "", err
+	}
+	output.Numb = numb + 1
+	output.Addingdate = time.Now().Unix()
 	return article.repo.CreateArticle(output)
 }
 

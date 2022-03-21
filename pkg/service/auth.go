@@ -49,6 +49,10 @@ func (auth *AuthService) GenerateToken(userName, password string) (string, maqol
 	return t, user, e
 }
 
+func (auth *AuthService) GetAllUsers() ([]maqola.User, error) {
+	return auth.repo.GetAllUsers()
+}
+
 func (auth *AuthService) ParseToken(accessToken string) (string, error) {
 	token, err := jwt.ParseWithClaims(accessToken, &tokenClaims{}, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {

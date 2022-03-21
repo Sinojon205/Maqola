@@ -27,6 +27,14 @@ type signInInput struct {
 	Password string `json: "password" binding:required`
 }
 
+func (h *Handler) getAllUsers(c *gin.Context) {
+	users, err := h.services.GetAllUsers()
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	c.JSON(http.StatusOK, map[string]interface{}{"users": users})
+}
 func (h *Handler) signIn(c *gin.Context) {
 	var input signInInput
 

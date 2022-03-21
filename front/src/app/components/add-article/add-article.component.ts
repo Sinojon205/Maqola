@@ -2,13 +2,14 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import {LocaleProp} from "../../types/locale-prop";
 import {LocaleService} from "../../services/locale.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {User} from "../../types/user";
+import {Passport, User} from "../../types/user";
 import {cleanSubscription} from "../../utils/subscription-util";
 import {first, from, fromEvent, Subscription} from "rxjs";
 import {mergeMap, tap} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
 import * as JSZip from "jszip";
+import {UserService} from "../../services/user.service";
 
 // @ts-ignore
 
@@ -55,8 +56,12 @@ export class AddArticleComponent implements OnInit, AfterViewInit {
   });
   private dialogSub: Subscription | undefined;
   private saveSub: Subscription | undefined;
+  users: User[] = [];
 
-  constructor(private locale: LocaleService, private router: Router, private articleService: ArticleService) {
+  constructor(private locale: LocaleService,
+              private router: Router,
+              private userService: UserService,
+              private articleService: ArticleService) {
     this.props = locale.props;
   }
 
@@ -76,10 +81,7 @@ export class AddArticleComponent implements OnInit, AfterViewInit {
     this.isAddUserOpen = true;
   }
 
-  selectUser(author: string) {
-    const user = new User()
-    user.passports[0].familia = author
-    user.passports[1].familia = author
+  selectUser(user: User) {
     this.authors.push(user)
     this.authorName = '';
     this.isAddUserOpen = false;
@@ -143,12 +145,19 @@ export class AddArticleComponent implements OnInit, AfterViewInit {
     })).subscribe((res: any) => {
       console.log(res)
       this.router.navigate(['main-view']).catch(() => '');
-    },(err)=>{
+    }, (err) => {
       console.log(err)
     })
   }
 
   onActionEmit(evt: string, prop: string) {
     this.files[prop] = this.files[prop].filter((f: File) => f.name != evt)
+  }
+
+  onChangeUserInput(evt: any) {
+    this.authorName = evt.target?.value || '';
+    console.log(evt)
+    this.users = this.userService.users.filter((it: User) => !!it.passports.find((p: Passport) => p.name.includes(this.authorName) ||
+      p.familia.includes(this.authorName)))
   }
 }

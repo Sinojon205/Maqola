@@ -17,7 +17,7 @@ func (h *Handler) createArticle(c *gin.Context) {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
-	id, err := h.services.Article.CreateArticle(input)
+	id, err := h.services.Article.CreateArticle(input, id.(string))
 	if err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
@@ -36,7 +36,25 @@ func (h *Handler) getAllArticles(c *gin.Context) {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
-	c.JSON(http.StatusOK, map[string]interface{}{"articles": articles})
+	articleIds := make([]string, len(articles))
+
+	for i, art := range articles {
+		articleIds[i] = art.Id.Hex()
+	}
+
+	recens, err := h.services.GetAllRecensiya(articleIds)
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	msgs, err := h.services.GetAllMessages(articleIds)
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, map[string]interface{}{"articles": articles, "recens": recens, "messages": msgs})
 }
 func (h *Handler) getArticleById(c *gin.Context) {
 	c.JSON(http.StatusOK, map[string]interface{}{"id": 0})

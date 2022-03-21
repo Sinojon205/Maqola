@@ -8,10 +8,12 @@ import (
 )
 
 type Store struct {
-	Client            *mongo.Client
-	DB                *mongo.Database
-	userRepository    *UserRepository
-	articleRepository *ArticleRepository
+	Client              *mongo.Client
+	DB                  *mongo.Database
+	userRepository      *UserRepository
+	articleRepository   *ArticleRepository
+	recensiyaRepository *RecensiyaRepository
+	messageRepository   *MessageRepository
 }
 
 func New(dbUrl string) (*Store, error) {
@@ -53,6 +55,30 @@ func (s *Store) Article() *ArticleRepository {
 	}
 
 	return s.articleRepository
+}
+
+func (s *Store) Recensiya() *RecensiyaRepository {
+	if s.recensiyaRepository != nil {
+		return s.recensiyaRepository
+	}
+
+	s.recensiyaRepository = &RecensiyaRepository{
+		collection: s.DB.Collection("recensiyaTb"),
+	}
+
+	return s.recensiyaRepository
+}
+
+func (s *Store) Message() *MessageRepository {
+	if s.messageRepository != nil {
+		return s.messageRepository
+	}
+
+	s.messageRepository = &MessageRepository{
+		collection: s.DB.Collection("recensiyaTb"),
+	}
+
+	return s.messageRepository
 }
 
 func getContext() context.Context {

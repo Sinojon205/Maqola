@@ -22,6 +22,8 @@ type Article struct {
 	ImagesId          []string           `json:"imagesid" bson:"imagesid"`
 	TableFilesId      []string           `json:"tablefilesid" bson:"tablefilesid"`
 	UserId            string             `json:"userid" bson:"userid"`
+	Numb              int                `json:"numb" bson:"numb"`
+	Addingdate        int64              `json:"addingdate" bson:"addingdate"`
 }
 
 type ArticleInput struct {

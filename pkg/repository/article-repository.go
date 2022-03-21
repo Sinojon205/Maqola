@@ -21,7 +21,7 @@ func (r *ArticleRepository) CreateArticle(a maqola.Article) (string, error) {
 }
 
 func (r *ArticleRepository) GetAllArticles(userId string) ([]maqola.Article, error) {
-	cursor, err := r.collection.Find(getContext(), bson.M{"user_id": bson.M{"$eq": userId}})
+	cursor, err := r.collection.Find(getContext(), bson.M{"userid": bson.M{"$eq": userId}})
 	if err != nil {
 		return nil, err
 	}
@@ -37,6 +37,15 @@ func (r *ArticleRepository) GetAllArticles(userId string) ([]maqola.Article, err
 		return nil, err
 	}
 	return articles, nil
+}
+
+func (r *ArticleRepository) GetArticlesAmount() (int, error) {
+	var article maqola.Article
+	err := r.collection.FindOne(getContext(), bson.M{"numb": bson.M{"$max": "$numb"}}).Decode(&article)
+	if err != nil {
+		return 0, err
+	}
+	return article.Numb, nil
 }
 
 func (r *ArticleRepository) GetAllFiles(files [][32]byte) ([]maqola.ArticleFile, error) {

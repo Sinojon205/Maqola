@@ -86,17 +86,13 @@
     <div *ngIf="isAddUserOpen">
       <mat-form-field>
         <mat-label>{{props ? props['addUserLabel'] : ''}}</mat-label>
-        <input [(ngModel)]="authorName" matInput>
+        <input (change)="onChangeUserInput($event)" matInput>
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
 
-      <ul *ngIf="authorName!==''">
-        <li (click)="selectUser('author1')">author1</li>
-        <li (click)="selectUser('author2')">author2</li>
-        <li (click)="selectUser('author3')">author3</li>
-        <li (click)="selectUser('author4')">author4</li>
-        <li (click)="selectUser('author5')">author5</li>
-        <li (click)="selectUser('author6')">author6</li>
+      <ul *ngIf="users.length>0">
+        <li *ngFor="let user of  users"
+            (click)="selectUser(user)">{{user.passports[0].name + ' ' + user.passports[0].familia}}</li>
       </ul>
     </div>
     <button mat-raised-button color="primary"
@@ -132,7 +128,8 @@
             (click)="onUploadClick('skanLic','')">{{props ? props['licDogTooltip'] : ''}}</button>
   </div>
   <div class="file-holder">
-    <file-view *ngFor="let f of (files['skanLic']??[])" [file]="f" (actionEmit)="onActionEmit($event,'skanLic')"></file-view>
+    <file-view *ngFor="let f of (files['skanLic']??[])" [file]="f"
+               (actionEmit)="onActionEmit($event,'skanLic')"></file-view>
   </div>
   <div mat-form-field>
     <mat-label>{{props ? props['fullTextLabel'] : ''}}</mat-label>
@@ -148,7 +145,8 @@
             (click)="onUploadClick('licText','*.doc, *.docx, *.rar',false)">{{props ? props['fullTextLicTooltip'] : ''}}</button>
   </div>
   <div class="file-holder">
-    <file-view *ngFor="let f of (files['licText']??[])" [file]="f" (actionEmit)="onActionEmit($event,'licText')"></file-view>
+    <file-view *ngFor="let f of (files['licText']??[])" [file]="f"
+               (actionEmit)="onActionEmit($event,'licText')"></file-view>
   </div>
   <div mat-form-field>
     <mat-label>{{props ? props['picLabel'] : ''}}</mat-label>
@@ -164,7 +162,8 @@
             (click)="onUploadClick('table',' *.doc(docx), *.xls, *.jpg *.cdr, *.psd, *.tiff')">{{props ? props['tableTooltip'] : ''}}</button>
   </div>
   <div class="file-holder">
-    <file-view *ngFor="let f of (files['table']??[])" [file]="f" (actionEmit)="onActionEmit($event,'table')"></file-view>
+    <file-view *ngFor="let f of (files['table']??[])" [file]="f"
+               (actionEmit)="onActionEmit($event,'table')"></file-view>
   </div>
 </div>
 <div class="panel">

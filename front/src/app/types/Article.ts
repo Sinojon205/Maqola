@@ -1,4 +1,4 @@
-class BaseArticleDate {
+class BaseArticleData {
   title: string = ''
   authorsid: string = ''
   annotation: string = ''
@@ -7,8 +7,9 @@ class BaseArticleDate {
 }
 
 export class Article {
+  numb: number = 0
   _id: string = ''
-  basedata: BaseArticleDate = new BaseArticleDate()
+  basedata: BaseArticleData[] = [new BaseArticleData(), new BaseArticleData()]
   udk: string = ''
   finansing: string = ''
   expertskanid: string = ''
@@ -17,4 +18,6 @@ export class Article {
   licensetextfileid: string = ''
   imagesid: string = ''
   tablefilesid: string = ''
+  status: string = ''
+  addingdate: number = 0
 }

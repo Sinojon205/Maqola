@@ -16,6 +16,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AddArticleComponent } from './components/add-article/add-article.component';
 import { FileViewComponent } from './components/file-view/file-view.component';
 import { HelpViewComponent } from './views/help-view/help-view.component';
+import { MessageComponent } from './views/message/message.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HelpViewComponent } from './views/help-view/help-view.component';
     SignUpComponent,
     AddArticleComponent,
     FileViewComponent,
-    HelpViewComponent
+    HelpViewComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

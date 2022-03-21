@@ -34,6 +34,19 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			articles.PUT("/:id", h.updateArticle)
 			articles.DELETE("/:id", h.deleteArticle)
 		}
+		users := api.Group("/users")
+		{
+			users.GET("/", h.getAllUsers)
+		}
+		recens := api.Group("/recens")
+		{
+			recens.POST("/", h.createRecensiya)
+			recens.PUT("/", h.updateRecensiya)
+		}
+		messages := api.Group("/messages")
+		{
+			messages.POST("/", h.createMessage)
+		}
 	}
 	staticFilesGrp := router.Group("/files")
 	{

@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px;
+  width: calc(100% - 100px);
+}
+
+.mat-input-element{
+  width: 100%;
+}
+textarea {
+  border: 1px solid #00796B;
+  width: 100%;
+}

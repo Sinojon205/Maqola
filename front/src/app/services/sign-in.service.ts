@@ -8,7 +8,7 @@ import {User} from "../types/user";
 })
 export class SignInService {
   token: string = ''
-  user: User | undefined;
+  user: User | undefined | null;
 
   constructor(private http: HttpClient) {
 

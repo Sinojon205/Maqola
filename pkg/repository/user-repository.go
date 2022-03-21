@@ -26,3 +26,17 @@ func (r UserRepository) GetUser(userName, password string) (maqola.User, error) 
 	err := r.collection.FindOne(getContext(), filter).Decode(&user)
 	return user, err
 }
+
+func (r UserRepository) GetAllUsers() ([]maqola.User, error) {
+	filter := bson.M{}
+	cursor, err := r.collection.Find(getContext(), filter)
+	users := make([]maqola.User, 0)
+	defer cursor.Close(getContext())
+	for cursor.Next(getContext()) {
+		var user maqola.User
+		cursor.Decode(&user)
+		users = append(users, user)
+	}
+	err = cursor.Err()
+	return users, err
+}

@@ -20,13 +20,16 @@ export class AppComponent {
   rout = '';
   user = '';
 
-  constructor(private service: MainService, private locale: LocaleService, private signService: SignInService, private router: Router) {
+  constructor(private service: MainService,
+              private locale: LocaleService,
+              private signService: SignInService,
+              private router: Router) {
     this.service = service;
     this.sub = this.service.init().pipe(
       mergeMap(() => this.locale.getLocale())).subscribe(() => {
       this.props = this.locale.props;
       this.prepared = true;
-      this.goToRout('main-view')
+      this.goToRout('messages')
     });
     this.router.events.pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd),)
       .subscribe((e: RouterEvent) => {

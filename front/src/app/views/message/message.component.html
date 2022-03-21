@@ -1,0 +1,21 @@
+<h2>{{title}}</h2>
+<div class="uploads">
+  <form [formGroup]="messageForm">
+    <mat-form-field>
+      <mat-label>Хабари нав</mat-label>
+      <textarea matInput formControlName="messageText"></textarea>
+      <mat-icon matSuffix>short_text</mat-icon>
+    </mat-form-field>
+  </form>
+</div>
+<div class="panel">
+  <button mat-raised-button color="primary" (click)="onSaveClick()">Интиқол</button>
+</div>
+<div class="article-item" *ngFor="let msg of messages">
+  <p>
+    <b>{{(passport) ? (passport.familia + ' ' +
+      passport.name + ' ' +
+      passport.nasab) : ''}}</b>, {{msg.addingdate}}
+  </p>
+  <div class="msg">{{msg.message}}</div>
+</div>
