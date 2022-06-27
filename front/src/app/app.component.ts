@@ -29,7 +29,7 @@ export class AppComponent {
       mergeMap(() => this.locale.getLocale())).subscribe(() => {
       this.props = this.locale.props;
       this.prepared = true;
-      this.goToRout('messages')
+      this.goToRout('main-view')
     });
     this.router.events.pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd),)
       .subscribe((e: RouterEvent) => {

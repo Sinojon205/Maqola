@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'help-view', component: HelpViewComponent, canActivate: [ConfigLoadGuard]},
-  {path: 'main-view', component: MainViewComponent, canActivate: [ConfigLoadGuard]},
+  {path: 'main-view', component: MainViewComponent,/* canActivate: [ConfigLoadGuard]*/},
   {path: 'messages', component: MessageComponent,/* canActivate: [ConfigLoadGuard]*/},
   {path: 'add-article', component: AddArticleComponent, canActivate: [ConfigLoadGuard]},
   {path: 'alert-popup', component: AlertComponent, canActivate: [ConfigLoadGuard], outlet: 'popup'}
