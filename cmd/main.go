@@ -18,6 +18,7 @@ type Config struct {
 
 func main() {
 	config := initConfig()
+	println(config.DatabaseUrl)
 	store, err := repository.New(config.DatabaseUrl)
 	if err != nil {
 		logrus.Fatalf("error  connecting to database: %s", err.Error())
