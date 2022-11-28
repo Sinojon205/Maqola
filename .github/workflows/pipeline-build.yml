@@ -36,4 +36,4 @@ jobs:
         port: 22
         user: u1506210
         pass: kVOe0ak8p7Q6Z66y
-        script: unzip
+        #script: unzip
