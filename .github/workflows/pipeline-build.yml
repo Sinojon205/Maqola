@@ -22,7 +22,7 @@ jobs:
         go-version: 1.18
 
     - name: Build
-      run: go build -v ./...
+      run: go build -v ./cmd/main.go
 
     #- name: Test
      # run: go test -v ./...
@@ -34,5 +34,5 @@ jobs:
         username: u1506210
         password: kVOe0ak8p7Q6Z66y
         port: 22
-        source: ./
+        source: ./main
         target: "go.u1506210.plsk.regruhosting.ru"
