@@ -22,7 +22,7 @@ jobs:
         go-version: 1.18
 
     - name: Build
-      run: go build -v ./output
+      run: go build -v ./...
 
     - name: Test
       run: go test -v ./...
@@ -30,7 +30,7 @@ jobs:
     - name: ssh-pipeline
       uses: garygrossgarten/github-action-scp@v0.8.0
       with:
-        local: ./output
+        local: ./
         remote: go.u1506210.plsk.regruhosting.ru
         host: 31.31.198.210
         port: 22
