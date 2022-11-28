@@ -27,13 +27,12 @@ jobs:
     #- name: Test
      # run: go test -v ./...
       
-    - name: ssh-pipeline
-      uses: garygrossgarten/github-action-scp@v0.8.0
+    - name: copy file via ssh
+      uses: appleboy/scp-action@master
       with:
-        local: ./
-        remote: go.u1506210.plsk.regruhosting.ru
         host: 31.31.198.210
+        username: u1506210
+        password: kVOe0ak8p7Q6Z66y
         port: 22
-        user: u1506210
-        pass: kVOe0ak8p7Q6Z66y
-        #script: unzip
+        source: "main.exe"
+        target: "go.u1506210.plsk.regruhosting.ru"
