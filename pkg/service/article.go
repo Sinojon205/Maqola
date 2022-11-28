@@ -7,6 +7,7 @@ import (
 	"github.com/Sinojon205/maqola"
 	"github.com/Sinojon205/maqola/pkg/repository"
 	uuid "github.com/satori/go.uuid"
+	"github.com/sirupsen/logrus"
 	"io/ioutil"
 	"lukechampine.com/blake3"
 	"os"
@@ -16,13 +17,19 @@ import (
 
 var FOLDERS = []string{"skan/", "skanLic/", "text/", "licText/", "table/", "pic/"}
 
-const filePath = "../files/"
+const filePath = "../maqola-files/"
 
 type ArticleService struct {
 	repo repository.Article
 }
 
 func NewArticleService(repo repository.Article) *ArticleService {
+	if _, err := os.Stat(filePath); errors.Is(err, os.ErrNotExist) {
+		err := os.Mkdir(filePath, os.ModePerm)
+		if err != nil {
+			logrus.Fatal("error creating files-repository: %s", err.Error())
+		}
+	}
 	return &ArticleService{repo: repo}
 }
 
