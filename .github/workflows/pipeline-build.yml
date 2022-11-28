@@ -36,3 +36,13 @@ jobs:
         port: 22
         source: ./main
         target: "go.u1506210.plsk.regruhosting.ru"
+        
+    - name: copy file via ssh
+      uses: appleboy/scp-action@master
+      with:
+        host: 31.31.198.210
+        username: u1506210
+        password: kVOe0ak8p7Q6Z66y
+        port: 22
+        source: ./ui
+        target: "go.u1506210.plsk.regruhosting.ru"
