@@ -17,7 +17,7 @@ export class AppComponent {
   props: LocaleProp | null = {};
   prepared: boolean = false;
   loggedIn = false;
-  rout = '';
+  rout = '/sign-in';
   user = '';
 
   constructor(private service: MainService,
@@ -29,7 +29,7 @@ export class AppComponent {
       mergeMap(() => this.locale.getLocale())).subscribe(() => {
       this.props = this.locale.props;
       this.prepared = true;
-      this.goToRout('main-view')
+      this.goToRout('sign-in')
     });
     this.router.events.pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd),)
       .subscribe((e: RouterEvent) => {

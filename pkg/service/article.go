@@ -109,9 +109,11 @@ func (article *ArticleService) CreateArticle(input maqola.ArticleInput, userId s
 			break
 		}
 	}
-	err = article.repo.AddAllFiles(filesData)
-	if err != nil {
-		return "", err
+	if len(filesData) > 0 {
+		err = article.repo.AddAllFiles(filesData)
+		if err != nil {
+			return "", err
+		}
 	}
 	numb, err := article.repo.GetArticlesAmount()
 	if err != nil {

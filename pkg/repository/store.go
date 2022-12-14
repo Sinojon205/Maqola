@@ -75,7 +75,7 @@ func (s *Store) Message() *MessageRepository {
 	}
 
 	s.messageRepository = &MessageRepository{
-		collection: s.DB.Collection("recensiyaTb"),
+		collection: s.DB.Collection("messageTb"),
 	}
 
 	return s.messageRepository

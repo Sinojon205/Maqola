@@ -6,10 +6,23 @@
   width: calc(100% - 100px);
 }
 
-.mat-input-element{
+::ng-deep .uploads mat-form-field {
   width: 100%;
+  height: 200px;
 }
+
+.mat-input-element, .uploads {
+  width: 100%;
+  height: 100%;
+}
+
 textarea {
   border: 1px solid #00796B;
   width: 100%;
+  height: 170px !important;
+  resize: none;
+}
+
+.panel {
+  margin-top: 32px;
 }

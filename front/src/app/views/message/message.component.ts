@@ -5,6 +5,7 @@ import {Article} from "../../types/Article";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Passport} from "../../types/user";
 import {SignInService} from "../../services/sign-in.service";
+import {HttpEventType} from "@angular/common/http";
 
 @Component({
   selector: 'app-message',
@@ -16,7 +17,7 @@ export class MessageComponent implements OnInit {
   article: Article | undefined | null;
   messageText = new FormControl('');
   messageForm = new FormGroup({
-    message: this.messageText,
+    messageText: this.messageText,
   });
   passport: Passport | undefined | null = null;
   title: string = '';
@@ -24,6 +25,7 @@ export class MessageComponent implements OnInit {
   constructor(private articleService: ArticleService, private loginService: SignInService) {
     this.article = this.articleService.selectedArticle;
     if (this.article) {
+      console.log(this.article);
       this.title = this.article.basedata[0].title || ''
       // @ts-ignore
       this.messages = this.articleService.messages[this.article._id];
@@ -35,6 +37,15 @@ export class MessageComponent implements OnInit {
   }
 
   onSaveClick() {
-
+    let msg = new Message();
+    msg.maqolaid = this.article?._id;
+    msg.addingdate = Date.now()
+    msg.message = this.messageText.value;
+    this.articleService.createMessage(msg).subscribe((res) => {
+      if (res.type === HttpEventType.Response && this.article) {
+        msg._id = res.body.id
+        this.messages.push(msg);
+      }
+    });
   }
 }

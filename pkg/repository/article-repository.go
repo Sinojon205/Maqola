@@ -43,7 +43,7 @@ func (r *ArticleRepository) GetArticlesAmount() (int, error) {
 	var article maqola.Article
 	err := r.collection.FindOne(getContext(), bson.M{"numb": bson.M{"$max": "$numb"}}).Decode(&article)
 	if err != nil {
-		return 0, err
+		return 0, nil
 	}
 	return article.Numb, nil
 }

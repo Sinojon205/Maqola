@@ -39,6 +39,25 @@ export class ArticleService {
     )
   }
 
+  createMessage(msg: Message) {
+    // @ts-ignore
+    return this.http.post("/api/messages/", msg, {
+      responseType: 'json',
+      observe: 'events',
+      reportProgress: true
+    }).pipe(
+      map((res: any) => {
+        if (res.type === HttpEventType.UploadProgress) {
+          return Math.round(100 * res.loaded / (res.total ?? 0))
+        } else if (res.type === HttpEventType.Sent) {
+          return 0
+        } else if (res.type === HttpEventType.Response) {
+          return res
+        }
+      })
+    )
+  }
+
   getAllArticles(): Observable<Article[]> {
     if (this.articles && this.articles.length > 0) {
       return of(this.articles);
