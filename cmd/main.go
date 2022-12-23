@@ -36,7 +36,7 @@ func main() {
 }
 
 func initConfig() *Config {
-	yamlFile, err := ioutil.ReadFile("configs/config.yml")
+	yamlFile, err := ioutil.ReadFile("./configs/config.yml")
 	c := &Config{}
 	if err != nil {
 		logrus.Printf("yamlFile.Get err   #%v ", err)
