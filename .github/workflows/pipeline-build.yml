@@ -27,9 +27,12 @@ jobs:
   build-Front:
     needs: build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front
+      
     steps:
     - uses: actions/checkout@v3
-    - working-directory: ./front
     
     - name: Set Up NodeJs
       uses: actions/setup-node@v3
