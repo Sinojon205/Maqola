@@ -23,10 +23,31 @@ jobs:
 
     - name: Build
       run: go build -v ./cmd/main.go
-
+      
+  build-Front:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - working-directory: ./front
+    - uses: actions/checkout@v3
+    
+    - name: node js build
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        
+    - name: Install dependencies
+      run: npm install --force
+      
+    - name: Build Front
+      run: npm run build
     #- name: Test
      # run: go test -v ./...
-      
+ 
+  deployment:
+    needs: build-Front
+    runs-on: ubuntu-latest
+    steps:
     - name: copy file via ssh
       uses: appleboy/scp-action@master
       with:
