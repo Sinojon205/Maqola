@@ -72,7 +72,7 @@ jobs:
         username: root
         password: Ev9mo9uKd$$-
         port: 22
-        source: ../ui
+        source: ./dist
         target: "/var/www/maqola.tj"
     #- name: Test
      # run: go test -v ./...
