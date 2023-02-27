@@ -9,6 +9,7 @@ on:
   pull_request:
     branches: [ "main" ]
 
+
 jobs:
 
   build:
@@ -37,9 +38,9 @@ jobs:
     - name: copy file via ssh
       uses: appleboy/scp-action@master
       with:
-        host: 37.140.195.180
-        username: root
-        password: Ev9mo9uKd$$-
+        host:  ${{ secrets.MAQ_HOST }}
+        username: ${{ secrets.MAQ_USER_NAME }}
+        password:  ${{ secrets.MAQ_PASSWORD }}
         port: 22
         source: ./configs
         target: "/var/www/maqola.tj"
@@ -67,9 +68,9 @@ jobs:
     - name: copy file via ssh
       uses: appleboy/scp-action@master
       with:
-        host: 37.140.195.180
-        username: root
-        password: Ev9mo9uKd$$-
+        host:  ${{ secrets.MAQ_HOST }}
+        username: ${{ secrets.MAQ_USER_NAME }}
+        password:  ${{ secrets.MAQ_PASSWORD }}
         port: 22
         source: ./ui
         target: "/var/www/maqola.tj"
