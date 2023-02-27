@@ -74,4 +74,12 @@ export class ArticleService {
         return this.articles;
       }));
   }
+
+  reset() {
+    this.articles = []
+    this.recensions = {}
+    this.messages = {}
+    this.selectedArticle = null
+    this.selectedMessage = null;
+  }
 }

@@ -10,7 +10,8 @@ export class HeaderInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     let authReq = req.clone({
-      headers: req.headers.append('Authorization', `Bearer ${this.loginService.token}`)
+      headers: req.headers.append('Authorization',
+        `Bearer ${req.url.includes('/refresh-token') ? this.loginService.refreshToken : this.loginService.token}`)
     });
     // send cloned request with header to the next handler.
     return next.handle(authReq);

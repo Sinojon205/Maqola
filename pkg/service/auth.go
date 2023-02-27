@@ -11,9 +11,10 @@ import (
 )
 
 const (
-	salt       = "dfkdsjfklsdfj_sldkoi3242343242"
-	signingKey = "sdaskjdhkjahriw3or3asdsadad"
-	tokenTTL   = 12 * time.Hour
+	salt            = "dfkdsjfklsdfj_sldkoi3242343242"
+	signingKey      = "sdaskjdhkjahriw3or3asdsadad"
+	tokenTTL        = 6000 * 60
+	refreshTokenTTL = 24 * time.Hour * 30
 )
 
 type tokenClaims struct {
@@ -30,23 +31,29 @@ func NewAuthService(repo repository.Authorization) *AuthService {
 }
 
 func (auth *AuthService) CreateUser(user maqola.User) (string, error) {
-	user.Password = geneeratePasswordHash(user.Password)
+	user.Password = generatePasswordHash(user.Password)
 	return auth.repo.CreateUser(user)
 }
 
-func (auth *AuthService) GenerateToken(userName, password string) (string, maqola.User, error) {
-	user, err := auth.repo.GetUser(userName, geneeratePasswordHash(password))
+func (auth *AuthService) GenerateToken(userName, password string) (string, string, maqola.User, error) {
+	user, err := auth.repo.GetUser(userName, generatePasswordHash(password))
 	if err != nil {
-		return "", user, nil
+		return "", "", user, nil
 	}
+
+	t, e := auth.generateToken(user.Id.Hex(), tokenTTL)
+	at, e := auth.generateToken(user.Id.Hex(), refreshTokenTTL)
+	return t, at, user, e
+}
+
+func (auth *AuthService) generateToken(hex string, ttl time.Duration) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &tokenClaims{
 		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(tokenTTL).Unix(),
+			ExpiresAt: time.Now().Add(ttl).Unix(),
 			IssuedAt:  time.Now().Unix()},
-		user.Id.Hex(),
+		hex,
 	})
-	t, e := token.SignedString([]byte(signingKey))
-	return t, user, e
+	return token.SignedString([]byte(signingKey))
 }
 
 func (auth *AuthService) GetAllUsers() ([]maqola.User, error) {
@@ -69,8 +76,12 @@ func (auth *AuthService) ParseToken(accessToken string) (string, error) {
 	}
 	return claims.UserId, nil
 }
+func (auth *AuthService) RefreshToken(userId string) (string, error) {
 
-func geneeratePasswordHash(password string) string {
+	return auth.generateToken(userId, tokenTTL)
+}
+
+func generatePasswordHash(password string) string {
 	hash := sha1.New()
 	hash.Write([]byte(password))
 	return fmt.Sprintf("%x", hash.Sum([]byte(salt)))

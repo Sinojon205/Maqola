@@ -41,11 +41,26 @@ func (h *Handler) signIn(c *gin.Context) {
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 	}
-	token, user, err := h.services.Authorization.GenerateToken(input.UserName, input.Password)
+	token, refreshToken, user, err := h.services.Authorization.GenerateToken(input.UserName, input.Password)
 	if err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
 
-	c.JSON(http.StatusOK, map[string]interface{}{"token": token, "user": user})
+	c.JSON(http.StatusOK, map[string]interface{}{"token": token, "refreshToken": refreshToken, "user": user})
+}
+
+func (h *Handler) refreshToken(c *gin.Context) {
+	id, ok := c.Get(userCtx)
+	if !ok {
+		newErrorResponse(c, http.StatusInternalServerError, "user id not found")
+		return
+	}
+	token, err := h.services.Authorization.RefreshToken(id.(string))
+	if err != nil {
+		newErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, map[string]interface{}{"refreshToken": token})
 }

@@ -7,8 +7,9 @@ import (
 
 type Authorization interface {
 	CreateUser(user maqola.User) (string, error)
-	GenerateToken(userName string, password string) (string, maqola.User, error)
+	GenerateToken(userName string, password string) (string, string, maqola.User, error)
 	ParseToken(token string) (string, error)
+	RefreshToken(token string) (string, error)
 	GetAllUsers() ([]maqola.User, error)
 }
 
