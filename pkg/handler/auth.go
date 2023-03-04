@@ -62,5 +62,5 @@ func (h *Handler) refreshToken(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, map[string]interface{}{"refreshToken": token})
+	c.JSON(http.StatusOK, map[string]interface{}{"token": token})
 }

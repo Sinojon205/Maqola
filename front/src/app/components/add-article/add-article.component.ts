@@ -4,7 +4,7 @@ import {LocaleService} from "../../services/locale.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Passport, User} from "../../types/user";
 import {cleanSubscription} from "../../utils/subscription-util";
-import {first, from, fromEvent, Subscription} from "rxjs";
+import {first, from, fromEvent, Subscription, timer} from "rxjs";
 import {mergeMap, tap} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
@@ -82,7 +82,9 @@ export class AddArticleComponent implements OnInit, AfterViewInit {
   }
 
   selectUser(user: User) {
-    this.authors.push(user)
+    if (!this.authors.find(it => it._id === user._id)) {
+      this.authors.push(user)
+    }
     this.authorName = '';
     this.isAddUserOpen = false;
   }
@@ -156,8 +158,22 @@ export class AddArticleComponent implements OnInit, AfterViewInit {
 
   onChangeUserInput(evt: any) {
     this.authorName = evt.target?.value || '';
-    console.log(evt)
-    this.users = this.userService.users.filter((it: User) => !!it.passports.find((p: Passport) => p.name.includes(this.authorName) ||
-      p.familia.includes(this.authorName)))
+    if (!this.authorName) {
+      this.users = this.userService.users
+    } else {
+      this.users = this.userService.users.filter((it: User) => !!it.passports.find((p: Passport) => p.name.includes(this.authorName) ||
+        p.familia.includes(this.authorName)))
+    }
+    this.users = this.users.filter(it => !this.authors.find(itt => it._id === itt._id))
+  }
+
+  delSelUser(id: number): void {
+    this.authors.splice(id, 1);
+  }
+
+  onUsersBlur() {
+    timer(400).subscribe(() => {
+      this.users = [];
+    });
   }
 }

@@ -13,7 +13,7 @@ import (
 const (
 	salt            = "dfkdsjfklsdfj_sldkoi3242343242"
 	signingKey      = "sdaskjdhkjahriw3or3asdsadad"
-	tokenTTL        = 6000 * 60
+	tokenTTL        = 6 * time.Minute
 	refreshTokenTTL = 24 * time.Hour * 30
 )
 

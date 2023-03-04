@@ -6,8 +6,6 @@ import {ACADEMIC_DEGREE} from "../../const/academic-degree";
 import {SignInService} from "../../services/sign-in.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {AuthGuard} from "../../guard/auth-guard";
-import {ConfigLoadGuard} from "../../guard/config-load-guard";
 
 @Component({
   selector: 'app-sign-up',

@@ -74,12 +74,14 @@ export class SignInComponent implements OnDestroy {
           });
         } else {
           console.log(res.error);
+          this.guard.isConfigReady = false;
         }
         this.logging = false;
       }, (err) => {
         this.errMsg = err.message;
         this.showError = true;
         this.logging = false;
+        this.guard.isConfigReady = false;
         this.showLoadingSpinner = false;
         throw err;
       });

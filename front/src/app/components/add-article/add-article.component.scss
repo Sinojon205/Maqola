@@ -1,5 +1,6 @@
 @import '../../../scss/palette';
 @import '../../../scss/set';
+
 :host {
   display: flex;
   flex-direction: column;
@@ -28,6 +29,15 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  & h3 {
+    width: 180px;
+  }
+
+  & p {
+    width: 180px;
+    margin: 0 0 0 10px;
+  }
 }
 
 .uploads {
@@ -60,4 +70,15 @@ form {
 
 .mat-icon {
   color: $primary-color;
+}
+
+.user-panel {
+  margin: 10px;
+  border-bottom: solid $primary-color 1px;
+  box-shadow: 0 2PX 3px #0a3f89;
+  align-items: center;
+
+  & .mat-icon {
+    color: $warn-color;
+  }
 }

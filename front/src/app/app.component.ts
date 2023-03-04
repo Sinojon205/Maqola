@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MainService} from "./services/main.service";
 import {LocaleService} from "./services/locale.service";
 import {filter, mergeMap} from "rxjs/operators";
-import {interval, of, Subscription} from "rxjs";
+import {interval, Subscription} from "rxjs";
 import {LocaleProp} from "./types/locale-prop";
 import {NavigationEnd, Router, RouterEvent} from "@angular/router";
 import {SignInService} from "./services/sign-in.service";
@@ -72,7 +72,7 @@ export class AppComponent {
 
   goToRout(route: string) {
     this.rout = route;
-    this.router.navigate([route]).catch(() => '');
+    this.router.navigate([route]).catch((err) => console.log(err));
   }
 
   onLogOutClick() {

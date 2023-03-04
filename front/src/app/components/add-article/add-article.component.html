@@ -76,17 +76,21 @@
 </div>
 <div class="authors">
   <h2 class="mat-title">{{props ? props['authorListTooltip'] : ''}}</h2>
-  <div *ngFor="let author of authors">
+  <div class="panel" *ngIf="authors && authors.length>0">
     <h3 class="mat-title">{{props ? props['ruInfoTooltip'] : ''}}</h3>
-    <p>{{author.passports[0].familia}}</p>
     <h3 class="mat-title">{{props ? props['enInfoTooltip'] : ''}}</h3>
+  </div>
+
+  <div *ngFor="let author of authors;let id = index" class="panel user-panel">
+    <p>{{author.passports[0].familia}}</p>
     <p>{{author.passports[1].familia}}</p>
+    <button style=" right:10px; height: 100%;" mat-icon-button color="warn" (click)="delSelUser(id)"><mat-icon>delete</mat-icon></button>
   </div>
   <div>
     <div *ngIf="isAddUserOpen">
       <mat-form-field>
         <mat-label>{{props ? props['addUserLabel'] : ''}}</mat-label>
-        <input (change)="onChangeUserInput($event)" matInput>
+        <input (change)="onChangeUserInput($event)"  (focus)="onChangeUserInput($event)" (blur)="onUsersBlur()" matInput>
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
 

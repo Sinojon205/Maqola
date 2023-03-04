@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {map, Observable, of} from "rxjs";
 import {User} from "../types/user";
 import {tap} from "rxjs/operators";
+import {ConfigLoadGuard} from "../guard/config-load-guard";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class SignInService {
   user: User | undefined | null;
   refreshToken: string = '';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private guard: ConfigLoadGuard) {
     this.refreshToken = localStorage.getItem("refresh-token-maqola") || '';
   }
 
@@ -23,6 +25,7 @@ export class SignInService {
         this.user = res.user
         this.refreshToken = res.refreshToken;
         localStorage.setItem("refresh-token-maqola", this.refreshToken);
+        this.guard.isConfigReady = true;
       }
       return res;
     }))
@@ -40,6 +43,7 @@ export class SignInService {
       tap((res: any) => {
         if (!!res.token) {
           this.token = res.token;
+          this.guard.isConfigReady = true;
         }
       }));
   }
@@ -47,7 +51,8 @@ export class SignInService {
   logout() {
     this.user = undefined;
     this.token = '';
-    this.refreshToken='';
+    this.refreshToken = '';
     localStorage.removeItem('refresh-token-maqola')
+    this.guard.isConfigReady = false;
   }
 }
