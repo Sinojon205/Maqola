@@ -25,4 +25,8 @@ export class UserService {
         return this.users
       }));
   }
+
+  updateUser(user: User): Observable<any> {
+    return this.http.post("/api/users/update-user/" + user._id, user)
+  }
 }

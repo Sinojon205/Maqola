@@ -22,6 +22,22 @@ func (h *Handler) signUp(c *gin.Context) {
 	c.JSON(http.StatusOK, map[string]interface{}{"id": id})
 }
 
+func (h *Handler) updateUser(c *gin.Context) {
+	var input maqola.User
+
+	if err := c.BindJSON(&input); err != nil {
+		newErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	id, err := h.services.Authorization.UpdateUser(input)
+	if err != nil {
+		newErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, map[string]interface{}{"modifiedCount": id})
+}
+
 type signInInput struct {
 	UserName string `json: "userName" binding:required`
 	Password string `json: "password" binding:required`
@@ -35,6 +51,7 @@ func (h *Handler) getAllUsers(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, map[string]interface{}{"users": users})
 }
+
 func (h *Handler) signIn(c *gin.Context) {
 	var input signInInput
 

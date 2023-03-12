@@ -20,10 +20,12 @@ func (r *ArticleRepository) CreateArticle(a maqola.Article) (string, error) {
 	return result.InsertedID.(primitive.ObjectID).Hex(), nil
 }
 
-func (r *ArticleRepository) GetAllArticles(userId string) ([]maqola.Article, error) {
-	cursor, err := r.collection.Find(getContext(), bson.M{"userid": bson.M{"$eq": userId}})
+func (r *ArticleRepository) GetUserArticles(userId string, count, page int) ([]maqola.Article, int64, error) {
+	filter := bson.M{"userid": bson.M{"$eq": userId}}
+	cursor, err := r.collection.Find(getContext(), filter)
+	total, _ := r.collection.CountDocuments(getContext(), filter)
 	if err != nil {
-		return nil, err
+		return nil, total, err
 	}
 	defer cursor.Close(getContext())
 	articles := make([]maqola.Article, 0)
@@ -34,9 +36,40 @@ func (r *ArticleRepository) GetAllArticles(userId string) ([]maqola.Article, err
 	}
 	err = cursor.Err()
 	if err != nil {
-		return nil, err
+		return nil, total, err
 	}
-	return articles, nil
+	return articles, total, nil
+}
+
+func (r *ArticleRepository) GetAllArticles(userId string, count, page int) ([]maqola.Article, int64, error) {
+	limit := bson.D{{"$limit", count}}
+	skip := bson.D{{"$skip", (page - 1) * count}}
+	pipeLine := mongo.Pipeline{skip, limit}
+	total := int64(0)
+	if userId != "" {
+		filter := bson.D{{"userid", userId}}
+		pipeLine = mongo.Pipeline{filter, skip, limit}
+		total, _ = r.collection.CountDocuments(getContext(), filter)
+	} else {
+		total, _ = r.collection.CountDocuments(getContext(), bson.M{})
+	}
+
+	cursor, err := r.collection.Aggregate(getContext(), pipeLine)
+	if err != nil {
+		return nil, total, err
+	}
+	defer cursor.Close(getContext())
+	articles := make([]maqola.Article, 0)
+	for cursor.Next(getContext()) {
+		var art maqola.Article
+		cursor.Decode(&art)
+		articles = append(articles, art)
+	}
+	err = cursor.Err()
+	if err != nil {
+		return nil, total, err
+	}
+	return articles, total, nil
 }
 
 func (r *ArticleRepository) GetArticlesAmount() (int, error) {

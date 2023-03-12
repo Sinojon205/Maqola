@@ -8,6 +8,7 @@ type Authorization interface {
 	CreateUser(user maqola.User) (string, error)
 	GetUser(userName, password string) (maqola.User, error)
 	GetAllUsers() ([]maqola.User, error)
+	UpdateUser(user maqola.User) (int64, error)
 }
 
 type Message interface {
@@ -23,7 +24,7 @@ type Recensiya interface {
 
 type Article interface {
 	CreateArticle(a maqola.Article) (string, error)
-	GetAllArticles(userId string) ([]maqola.Article, error)
+	GetAllArticles(userId string, count, page int) ([]maqola.Article, int64, error)
 	GetArticlesAmount() (int, error)
 	GetAllFiles(files [][32]byte) ([]maqola.ArticleFile, error)
 	AddAllFiles(files []interface{}) error

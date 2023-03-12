@@ -31,8 +31,21 @@ export class AuthorId {
 }
 
 export class Telephon {
-  number: string = '';
-  type: string = '';
+  mobTel: string = '';
+  homeTel: string = '';
+  workTel: string = '';
+}
+
+export class AuthorIds {
+  orcId: string = '';
+  publonId: string = '';
+  researcherId: string = '';
+  scopusId: string = '';
+  rincId: string = '';
+  googleScholarId: string = '';
+  researchgateId: string = '';
+  mendeleyId: string = '';
+  loopId: string = '';
 }
 
 export class User {
@@ -40,10 +53,10 @@ export class User {
   userName: string = '';
   password: string = '';
   passports: Passport[] = [];
-  authorIds: string = '';
+  authorIds: AuthorIds = new AuthorIds();
   mainEmail: string = '';
   alterEmail: string = '';
-  telephons: Telephon[] = [];
+  telephons: Telephon = new Telephon();
   fax: string = '';
 
   constructor() {

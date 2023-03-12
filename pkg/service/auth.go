@@ -35,6 +35,11 @@ func (auth *AuthService) CreateUser(user maqola.User) (string, error) {
 	return auth.repo.CreateUser(user)
 }
 
+func (auth *AuthService) UpdateUser(user maqola.User) (int64, error) {
+	user.Password = generatePasswordHash(user.Password)
+	return auth.repo.UpdateUser(user)
+}
+
 func (auth *AuthService) GenerateToken(userName, password string) (string, string, maqola.User, error) {
 	user, err := auth.repo.GetUser(userName, generatePasswordHash(password))
 	if err != nil {

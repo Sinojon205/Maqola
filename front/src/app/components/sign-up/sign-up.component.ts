@@ -6,6 +6,8 @@ import {ACADEMIC_DEGREE} from "../../const/academic-degree";
 import {SignInService} from "../../services/sign-in.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {UserService} from "../../services/user.service";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-sign-up',
@@ -179,9 +181,59 @@ export class SignUpComponent implements OnInit {
 
   constructor(private locale: LocaleService,
               private signService: SignInService,
+              private userService: UserService,
               private router: Router) {
     this.props = locale.props;
     this.onlyForShow = this.signService.token !== '';
+    if (this.signService.user) {
+      this.mainEmail.setValue(this.signService.user.mainEmail)
+      this.alterEmail.setValue(this.signService.user.alterEmail)
+      this.userName.setValue(this.signService.user.userName)
+
+      this.mobTel.setValue(this.signService.user.telephons.mobTel)
+      this.homeTel.setValue(this.signService.user.telephons.homeTel)
+      this.workTel.setValue(this.signService.user.telephons.workTel)
+      this.fax.setValue(this.signService.user.fax)
+      this.name.setValue(this.signService.user.passports[0].name)
+      this.familia.setValue(this.signService.user.passports[0].familia)
+      this.nasab.setValue(this.signService.user.passports[0].nasab)
+      this.appealForm.setValue(this.signService.user.passports[0].appealForm)
+      this.academicDegree.setValue(this.signService.user.passports[0].academicDegree)
+      this.academicTitle.setValue(this.signService.user.passports[0].academicTitle)
+      this.position.setValue(this.signService.user.passports[0].position)
+      this.organisation.setValue(this.signService.user.passports[0].organisation)
+      this.department.setValue(this.signService.user.passports[0].department)
+      this.scientificInterestsArea.setValue(this.signService.user.passports[0].scientificInterestsArea)
+      this.country.setValue(this.signService.user.passports[0].organisationAddress.country)
+      this.city.setValue(this.signService.user.passports[0].organisationAddress.city)
+      this.street.setValue(this.signService.user.passports[0].organisationAddress.street)
+      this.house.setValue(this.signService.user.passports[0].organisationAddress.house)
+      this.mailIndex.setValue(this.signService.user.passports[0].organisationAddress.mailIndex)
+      this.name1.setValue(this.signService.user.passports[1].name)
+      this.familia1.setValue(this.signService.user.passports[1].familia)
+      this.nasab1.setValue(this.signService.user.passports[1].nasab)
+      this.appealForm1.setValue(this.signService.user.passports[1].appealForm)
+      this.academicDegree1.setValue(this.signService.user.passports[1].academicDegree)
+      this.academicTitle1.setValue(this.signService.user.passports[1].academicTitle)
+      this.position1.setValue(this.signService.user.passports[1].position)
+      this.organisation1.setValue(this.signService.user.passports[1].organisation)
+      this.department1.setValue(this.signService.user.passports[1].department)
+      this.scientificInterestsArea1.setValue(this.signService.user.passports[1].scientificInterestsArea)
+      this.country1.setValue(this.signService.user.passports[1].organisationAddress.country)
+      this.city1.setValue(this.signService.user.passports[1].organisationAddress.city)
+      this.street1.setValue(this.signService.user.passports[1].organisationAddress.street)
+      this.house1.setValue(this.signService.user.passports[1].organisationAddress.house)
+      this.mailIndex1.setValue(this.signService.user.passports[1].organisationAddress.mailIndex)
+      this.orcId.setValue(this.signService.user.authorIds.orcId)
+      this.publonId.setValue(this.signService.user.authorIds.publonId)
+      this.researcherId.setValue(this.signService.user.authorIds.researcherId)
+      this.scopusId.setValue(this.signService.user.authorIds.scopusId)
+      this.rincId.setValue(this.signService.user.authorIds.rincId)
+      this.googleScholarId.setValue(this.signService.user.authorIds.googleScholarId)
+      this.researchgateId.setValue(this.signService.user.authorIds.researchgateId)
+      this.mendeleyId.setValue(this.signService.user.authorIds.mendeleyId)
+      this.loopId.setValue(this.signService.user.authorIds.loopId)
+    }
   }
 
   ngOnInit(): void {
@@ -198,18 +250,8 @@ export class SignUpComponent implements OnInit {
       user[key] = this.loginForm.value[key]
     }
     user.passports = [this.passportForm.value, this.passportForm1.value]
-    user.authorIds = []
-    for (const key in this.authorIds.value) {
-      if (this.authorIds.value[key]) {
-        user.authorIds.push({idname: key, id: this.authorIds.value[key]})
-      }
-    }
-
-    user.telephons = []
-    for (const key in this.phones.value) {
-      if (this.phones.value[key])
-        user.telephons.push({type: key, number: this.phones.value[key]})
-    }
+    user.authorIds = this.authorIds.value;
+    user.telephons = this.phones.value;
     if (user.password !== user.password1) {
       this.errMsg = 'Паролы не совпадают!'
       this.showError = true
@@ -221,7 +263,7 @@ export class SignUpComponent implements OnInit {
       this.showError = true
       return
     }
-    this.signService.register(user).subscribe((res) => {
+    let obs = this.signService.register(user).pipe(tap((res) => {
       if (res instanceof HttpErrorResponse) {
         this.showError = true;
         this.errMsg = res.error.message
@@ -235,6 +277,12 @@ export class SignUpComponent implements OnInit {
       } else {
         console.log(res.error);
       }
+    }));
+    if (this.signService.user) {
+      obs = this.userService.updateUser(user)
+    }
+    obs.subscribe((res) => {
+      this.showLoadingSpinner = false;
     }, (err) => {
       this.errMsg = err.message;
       this.showError = true;

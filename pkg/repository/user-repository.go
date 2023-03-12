@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"errors"
 	"github.com/Sinojon205/maqola"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -12,12 +13,25 @@ type UserRepository struct {
 }
 
 func (r UserRepository) CreateUser(user maqola.User) (string, error) {
-
+	var u maqola.User
+	filter := bson.M{"userName": bson.M{"$eq": user.UserName}}
+	err := r.collection.FindOne(getContext(), filter).Decode(&u)
+	if err == nil {
+		return "", errors.New("The userName already exists!")
+	}
 	result, err := r.collection.InsertOne(getContext(), user)
 	if err != nil {
 		return "", err
 	}
 	return result.InsertedID.(primitive.ObjectID).Hex(), nil
+}
+func (r UserRepository) UpdateUser(user maqola.User) (int64, error) {
+	filter := bson.M{"_id": bson.M{"$eq": user.Id}}
+	result, err := r.collection.UpdateOne(getContext(), filter, user)
+	if err != nil {
+		return 0, err
+	}
+	return result.ModifiedCount, nil
 }
 
 func (r UserRepository) GetUser(userName, password string) (maqola.User, error) {

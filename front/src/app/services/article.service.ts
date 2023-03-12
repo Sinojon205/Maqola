@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEventType} from "@angular/common/http";
+import {HttpClient, HttpEventType, HttpParams} from "@angular/common/http";
 import {Article} from "../types/Article";
 import {map} from "rxjs/operators";
 import {Observable, of} from "rxjs";
@@ -15,6 +15,7 @@ export class ArticleService {
   messages: { [key: string]: Message[] } = {}
   selectedArticle: Article | null = null
   selectedMessage: Recensiya | null = null;
+  loading = false;
 
   constructor(private http: HttpClient) {
 
@@ -58,12 +59,11 @@ export class ArticleService {
     )
   }
 
-  getAllArticles(): Observable<Article[]> {
-    if (this.articles && this.articles.length > 0) {
-      return of(this.articles);
-    }
-    return this.http.get("/api/articles/", {
-      responseType: 'json'
+  getAllArticles(page: number, count: number, forUser = false): Observable<any> {
+    const params = new HttpParams().append("page", page).append("count", count)
+    return this.http.get(`/api/articles/${forUser ? "users" : ""}`, {
+      responseType: 'json',
+      params
     }).pipe(
       map((res: any) => {
         this.articles = res.articles;
@@ -71,7 +71,7 @@ export class ArticleService {
           this.recensions[it._id] = res.recens.filter((r: Recensiya) => r.maqolaid === it._id);
           this.messages[it._id] = res.messages.filter((m: Recensiya) => m.maqolaid === it._id);
         });
-        return this.articles;
+        return res;
       }));
   }
 

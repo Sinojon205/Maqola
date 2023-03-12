@@ -1,11 +1,26 @@
+<div class="top">
+  <button mat-raised-button [color]="itemsType!='all'?'primary':'accent'"
+          (click)="getData(1,'all')">{{props ? props['all'] : ''}}</button>
+  <button mat-raised-button [color]="itemsType!='user'?'primary':'accent'"
+          (click)="getData(1,'user')">{{props ? props['user'] : ''}}</button>
+
+</div>
 <div class="article-item" *ngFor="let article of articles">
   <h2>{{article.basedata.length > 0 ? article.basedata[0].title : ''}}</h2>
   <h3>Рамзи мақола: {{article.numb}}</h3>
   <p>Мақола илова карда шуд: {{article.addingdate}}</p>
   <h3>Ҳолати мақола: {{article.status}}</h3>
   <p>Ретсензияҳо: <b>{{recensions[article._id].length}}</b></p>
-<p *ngFor="let r of recensions[article._id]">Ретсензия аз {{r.addingdate}}
-  <button (click)="onOpenRecensiya(article, r)">Дидани ретсензия</button></p>
+  <p *ngFor="let r of recensions[article._id]">Ретсензия аз {{r.addingdate}}
+    <button (click)="onOpenRecensiya(article, r)">Дидани ретсензия</button>
+  </p>
   <p>Хабарҳо: <b>{{messages[article._id].length}}</b>
-    <button (click)="onOpenMessages(article)">Ҳамаи хабарҳо</button></p>
+    <button (click)="onOpenMessages(article)">Ҳамаи хабарҳо</button>
+  </p>
 </div>
+<div class="bottom" *ngIf="pages.length>0">
+  <span>{{props ? props['pages'] : ''}}</span>
+  <button mat-raised-button *ngFor="let i in pages" [color]="page!=i?'primary':'accent'"
+          (click)="getData(i,itemsType)">{{i}}</button>
+</div>
+<div class="loading-spinner" *ngIf="loading"></div>

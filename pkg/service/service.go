@@ -7,6 +7,7 @@ import (
 
 type Authorization interface {
 	CreateUser(user maqola.User) (string, error)
+	UpdateUser(user maqola.User) (int64, error)
 	GenerateToken(userName string, password string) (string, string, maqola.User, error)
 	ParseToken(token string) (string, error)
 	RefreshToken(token string) (string, error)
@@ -26,7 +27,7 @@ type Recensiya interface {
 
 type Article interface {
 	CreateArticle(user maqola.ArticleInput, userId string) (string, error)
-	GetAllArticles(userId string) ([]maqola.Article, error)
+	GetAllArticles(userId string, count, page int) ([]maqola.Article, int64, error)
 }
 
 type Service struct {

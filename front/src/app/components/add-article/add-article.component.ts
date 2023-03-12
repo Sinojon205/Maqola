@@ -130,6 +130,7 @@ export class AddArticleComponent implements OnInit, AfterViewInit {
   }
 
   onSaveClick() {
+    this.articleService.loading = true
     const article: any = this.otherDataForm.value
     article['basedata'] = [this.ruInfoForm.value, this.enInfoForm.value]
     const zip = new JSZip()
@@ -146,8 +147,10 @@ export class AddArticleComponent implements OnInit, AfterViewInit {
       return this.articleService.createArticle(article)
     })).subscribe((res: any) => {
       console.log(res)
+      this.articleService.loading = false
       this.router.navigate(['main-view']).catch(() => '');
     }, (err) => {
+      this.articleService.loading = false
       console.log(err)
     })
   }

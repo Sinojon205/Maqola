@@ -124,9 +124,10 @@ func (article *ArticleService) CreateArticle(input maqola.ArticleInput, userId s
 	return article.repo.CreateArticle(output)
 }
 
-func (article *ArticleService) GetAllArticles(userId string) ([]maqola.Article, error) {
-	return article.repo.GetAllArticles(userId)
+func (article *ArticleService) GetAllArticles(userId string, count, page int) ([]maqola.Article, int64, error) {
+	return article.repo.GetAllArticles(userId, count, page)
 }
+
 func createFileName(h [32]byte, name string) string {
 	uuid, err := uuid.FromBytes(h[:16])
 	if err != nil {
