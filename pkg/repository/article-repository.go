@@ -47,7 +47,7 @@ func (r *ArticleRepository) GetAllArticles(userId string, count, page int) ([]ma
 	pipeLine := mongo.Pipeline{skip, limit}
 	total := int64(0)
 	if userId != "" {
-		filter := bson.D{{"userid", userId}}
+		filter := bson.D{{"$match", bson.D{{"userid", userId}}}}
 		pipeLine = mongo.Pipeline{filter, skip, limit}
 		total, _ = r.collection.CountDocuments(getContext(), filter)
 	} else {

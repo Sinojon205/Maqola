@@ -57,7 +57,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	}
 	staticFilesGrp := router.Group("/files")
 	{
-		staticFilesGrp.StaticFS("", http.Dir("../files"))
+		staticFilesGrp.StaticFS("", http.Dir("../maqola-files"))
 	}
 	router.Use(static.Serve("/", static.LocalFile("./ui", false)))
 	return router

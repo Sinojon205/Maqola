@@ -6,6 +6,8 @@
 
 </div>
 <div class="article-item" *ngFor="let article of articles">
+  <img [src]="article.imagesid[0]|| 'noimage.png'" >
+  <div class="article-info" >
   <h2>{{article.basedata.length > 0 ? article.basedata[0].title : ''}}</h2>
   <h3>Рамзи мақола: {{article.numb}}</h3>
   <p>Мақола илова карда шуд: {{article.addingdate}}</p>
@@ -17,6 +19,7 @@
   <p>Хабарҳо: <b>{{messages[article._id].length}}</b>
     <button (click)="onOpenMessages(article)">Ҳамаи хабарҳо</button>
   </p>
+</div>
 </div>
 <div class="bottom" *ngIf="pages.length>0">
   <span>{{props ? props['pages'] : ''}}</span>

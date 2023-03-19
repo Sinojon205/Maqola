@@ -60,7 +60,7 @@ func (article *ArticleService) CreateArticle(input maqola.ArticleInput, userId s
 		h := blake3.Sum256(bytes)
 		hashes[i] = h
 		files[i] = bytes
-		fns[i] = filePath + createFileName(h, f.Name)
+		fns[i] = "files/" + createFileName(h, f.Name)
 	}
 	output.BaseData = input.BaseData
 	output.Finansing = input.Finansing
