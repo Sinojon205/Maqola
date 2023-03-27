@@ -4,12 +4,14 @@ import {LocaleService} from "../../services/locale.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Passport, User} from "../../types/user";
 import {cleanSubscription} from "../../utils/subscription-util";
-import {first, from, fromEvent, Subscription, timer} from "rxjs";
+import {catchError, first, from, fromEvent, Observable, Subscription, timer} from "rxjs";
 import {mergeMap, tap} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
 import * as JSZip from "jszip";
 import {UserService} from "../../services/user.service";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {AlertComponent} from "../alert/alert.component";
 
 // @ts-ignore
 
@@ -60,6 +62,8 @@ export class AddArticleComponent implements OnInit, AfterViewInit {
 
   constructor(private locale: LocaleService,
               private router: Router,
+              private dialog: MatDialog,
+              private dlgRef: MatDialogRef<AddArticleComponent>,
               private userService: UserService,
               private articleService: ArticleService) {
     this.props = locale.props;
@@ -145,7 +149,7 @@ export class AddArticleComponent implements OnInit, AfterViewInit {
     this.saveSub = from(zip.generateAsync({type: 'uint8array'})).pipe(mergeMap((res) => {
       article.files = Array.from(res)
       return this.articleService.createArticle(article)
-    })).subscribe((res: any) => {
+    }), catchError(err => this.showAlert("Error", err.message))).subscribe((res: any) => {
       console.log(res)
       this.articleService.loading = false
       this.router.navigate(['main-view']).catch(() => '');
@@ -178,5 +182,13 @@ export class AddArticleComponent implements OnInit, AfterViewInit {
     timer(400).subscribe(() => {
       this.users = [];
     });
+  }
+
+  private showAlert(header: string, message: string): Observable<any> {
+    return this.dialog.open(AlertComponent, {
+      width: '400px',
+      disableClose: true,
+      data: {header, message}
+    }).afterClosed()
   }
 }
