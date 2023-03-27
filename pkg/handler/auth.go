@@ -64,6 +64,7 @@ func (h *Handler) signIn(c *gin.Context) {
 		return
 	}
 	user.Password = ""
+
 	c.JSON(http.StatusOK, map[string]interface{}{"token": token, "refreshToken": refreshToken, "user": user})
 }
 

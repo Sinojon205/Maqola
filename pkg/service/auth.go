@@ -7,6 +7,7 @@ import (
 	"github.com/Sinojon205/maqola"
 	"github.com/Sinojon205/maqola/pkg/repository"
 	"github.com/dgrijalva/jwt-go"
+	"github.com/sirupsen/logrus"
 	"time"
 )
 
@@ -47,7 +48,10 @@ func (auth *AuthService) GenerateToken(userName, password string) (string, strin
 	}
 
 	t, e := auth.generateToken(user.Id.Hex(), tokenTTL)
+	logrus.Debug(t)
 	at, e := auth.generateToken(user.Id.Hex(), refreshTokenTTL)
+	logrus.Debug(at)
+
 	return t, at, user, e
 }
 
