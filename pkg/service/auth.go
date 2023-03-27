@@ -48,9 +48,10 @@ func (auth *AuthService) GenerateToken(userName, password string) (string, strin
 	}
 	t, e := auth.generateToken(user.Id.Hex(), tokenTTL)
 	logrus.Print(t, e)
+	fmt.Print(t)
 	at, e := auth.generateToken(user.Id.Hex(), refreshTokenTTL)
 	logrus.Print(at, e)
-
+	fmt.Print(at)
 	return t, at, user, e
 }
 
