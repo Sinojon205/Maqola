@@ -63,7 +63,7 @@ func (h *Handler) signIn(c *gin.Context) {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
-
+	user.Password = ""
 	c.JSON(http.StatusOK, map[string]interface{}{"token": token, "refreshToken": refreshToken, "user": user})
 }
 
