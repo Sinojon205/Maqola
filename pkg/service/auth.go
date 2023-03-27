@@ -46,7 +46,6 @@ func (auth *AuthService) GenerateToken(userName, password string) (string, strin
 	if err != nil {
 		return "", "", user, nil
 	}
-
 	t, e := auth.generateToken(user.Id.Hex(), tokenTTL)
 	logrus.Print(t, e)
 	at, e := auth.generateToken(user.Id.Hex(), refreshTokenTTL)
