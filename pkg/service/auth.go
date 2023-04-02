@@ -7,7 +7,6 @@ import (
 	"github.com/Sinojon205/maqola"
 	"github.com/Sinojon205/maqola/pkg/repository"
 	"github.com/dgrijalva/jwt-go"
-	"github.com/sirupsen/logrus"
 	"time"
 )
 
@@ -44,14 +43,10 @@ func (auth *AuthService) UpdateUser(user maqola.User) (int64, error) {
 func (auth *AuthService) GenerateToken(userName, password string) (string, string, maqola.User, error) {
 	user, err := auth.repo.GetUser(userName, generatePasswordHash(password))
 	if err != nil {
-		return "", "", user, nil
+		return "", "", user, err
 	}
 	t, e := auth.generateToken(user.Id.Hex(), tokenTTL)
-	logrus.Fatal(t, e)
-	fmt.Print(t)
 	at, e := auth.generateToken(user.Id.Hex(), refreshTokenTTL)
-	logrus.Fatal(at, e)
-
 	return t, at, user, e
 }
 
