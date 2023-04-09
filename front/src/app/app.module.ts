@@ -12,11 +12,12 @@ import {ConfigLoadGuard} from "./guard/config-load-guard";
 import {MaterialModule} from "./material-module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { AddArticleComponent } from './components/add-article/add-article.component';
-import { FileViewComponent } from './components/file-view/file-view.component';
-import { HelpViewComponent } from './views/help-view/help-view.component';
-import { MessageComponent } from './views/message/message.component';
+import {SignUpComponent} from './components/sign-up/sign-up.component';
+import {AddArticleComponent} from './components/add-article/add-article.component';
+import {FileViewComponent} from './components/file-view/file-view.component';
+import {HelpViewComponent} from './views/help-view/help-view.component';
+import {MessageComponent} from './views/message/message.component';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,11 @@ import { MessageComponent } from './views/message/message.component';
     MaterialModule,
     HttpClientModule
   ],
-  providers: [ConfigLoadGuard, httpInterceptorProviders],
+  providers: [
+    ConfigLoadGuard,
+    httpInterceptorProviders,
+    {provide: MatDialogRef, useValue: {}},
+    {provide: MAT_DIALOG_DATA, useValue: {}}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

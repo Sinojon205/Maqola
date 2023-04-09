@@ -7,7 +7,7 @@ import {tap} from "rxjs/operators";
   providedIn: 'root'
 })
 export class MainService {
-  config: UIConfig | null = null;
+  config: UIConfig = {api: '', locale: 'ru_RU',}
 
   constructor() {
   }
@@ -19,6 +19,6 @@ export class MainService {
   }
 
   destroy(): void {
-    this.config = null;
+    this.config =  {api: '', locale: 'ru_RU',};
   }
 }

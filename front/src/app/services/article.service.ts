@@ -5,6 +5,8 @@ import {map} from "rxjs/operators";
 import {Observable, of} from "rxjs";
 import {Recensiya} from "../types/recensiya";
 import {Message} from "../types/message";
+import {UIConfig} from "../types/ui-config";
+import {MainService} from "./main.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +18,15 @@ export class ArticleService {
   selectedArticle: Article | null = null
   selectedMessage: Recensiya | null = null;
   loading = false;
+  config: UIConfig
 
-  constructor(private http: HttpClient) {
-
+  constructor(private http: HttpClient, private mainService: MainService) {
+    this.config = this.mainService.config
   }
 
   createArticle(article: Article) {
     // @ts-ignore
-    return this.http.post("/api/articles/", article, {
+    return this.http.post(this.mainService.config.api + "api/articles/", article, {
       responseType: 'json',
       observe: 'events',
       reportProgress: true
@@ -42,7 +45,7 @@ export class ArticleService {
 
   createMessage(msg: Message) {
     // @ts-ignore
-    return this.http.post("/api/messages/", msg, {
+    return this.http.post(this.mainService.config.api + "api/messages/", msg, {
       responseType: 'json',
       observe: 'events',
       reportProgress: true
@@ -61,7 +64,7 @@ export class ArticleService {
 
   getAllArticles(page: number, count: number, forUser = false): Observable<any> {
     const params = new HttpParams().append("page", page).append("count", count)
-    return this.http.get(`/api/articles/${forUser ? "users" : ""}`, {
+    return this.http.get(this.mainService.config.api + `api/articles/${forUser ? "users" : ""}`, {
       responseType: 'json',
       params
     }).pipe(
