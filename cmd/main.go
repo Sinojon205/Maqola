@@ -28,8 +28,8 @@ func main() {
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 	srv := new(maqola.Server)
-
-	if err := srv.Run(config.Port, handlers.InitRoutes()); err != nil {
+	router := handlers.InitRoutes()
+	if err := srv.Run(config.Port, router); err != nil {
 		logrus.Fatalf("error occured while running http server: %s", err.Error())
 	}
 

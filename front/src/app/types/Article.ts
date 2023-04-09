@@ -16,7 +16,7 @@ export class Article {
   licenseskanid: string = ''
   articlfileid: string = ''
   licensetextfileid: string = ''
-  imagesid: string = ''
+  imagesid: string[] = []
   tablefilesid: string = ''
   status: string = ''
   addingdate: number = 0

@@ -20,6 +20,8 @@ func NewHandler(services *service.Service) *Handler {
 
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
+	router.Use(CORSMiddleware())
+
 	auth := router.Group("/auth")
 	{
 		auth.POST("/sign-up", h.signUp)
@@ -27,10 +29,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	}
 	api := router.Group("/api", h.userIdentity)
 	{
-		refreshToken := api.Group("/refresh-token")
-		{
-			refreshToken.POST("/", h.refreshToken)
-		}
+		api.POST("/refresh-token", h.refreshToken)
 		articles := api.Group("/articles")
 		{
 			articles.POST("/", h.createArticle)
@@ -95,4 +94,20 @@ func (h *Handler) getArticles(id string, c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, map[string]interface{}{"articles": articles, "recens": recens, "messages": msgs, "total": total})
+}
+
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://localhost:4200")
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+
+		c.Next()
+	}
 }
