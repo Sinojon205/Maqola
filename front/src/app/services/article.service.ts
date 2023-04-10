@@ -73,7 +73,7 @@ export class ArticleService {
         this.articles.forEach((it) => {
           this.recensions[it._id] = res.recens.filter((r: Recensiya) => r.maqolaid === it._id);
           this.messages[it._id] = res.messages.filter((m: Recensiya) => m.maqolaid === it._id);
-          it.imagesid = it.imagesid.map(img => this.mainService.config.api + img)
+          it.imagesid = it.imagesid.map(img => (this.mainService.config.api.length == 1 ? './' : this.mainService.config.api) + img)
         });
         return res;
       }));
